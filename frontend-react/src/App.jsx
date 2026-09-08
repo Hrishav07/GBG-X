@@ -1741,172 +1741,315 @@ export default function App() {
         {/* VIEW 3: HOME PAGE VIEW */}
         {router.page === 'home' && (
           <>
-            {/* ================= 2. HERO CANOPY CONTAINER ================= */}
+            {/* ================= 2. LUXURY EDITORIAL HERO SECTION (ROAMORA STYLE) ================= */}
             <Reveal direction="scale">
-              <div style={{ maxWidth: '1380px', margin: '14px auto 20px auto', padding: '0 20px' }}>
+              <div style={{ maxWidth: '1380px', margin: '14px auto 0 auto', padding: '0 20px' }}>
+                {/* Hero Panoramic Banner */}
                 <div style={{
-                  backgroundColor: themeStyles.heroBg,
-                  borderRadius: '32px',
-                  padding: '36px 44px 30px 44px',
                   position: 'relative',
+                  borderRadius: '32px',
                   overflow: 'hidden',
-                  minHeight: '480px',
-                  display: 'grid',
-                  gridTemplateColumns: '1.2fr 1fr',
-                  alignItems: 'center'
+                  minHeight: '520px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  padding: '60px 50px 90px 50px',
+                  backgroundImage: isDark
+                    ? `linear-gradient(to right, rgba(9,9,11,0.92) 0%, rgba(9,9,11,0.7) 45%, rgba(9,9,11,0.3) 100%), url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1800&q=85')`
+                    : `linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.65) 45%, rgba(255,255,255,0.15) 100%), url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1800&q=85')`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center 40%',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.15)'
                 }}>
-                  <div style={{ zIndex: 2 }}>
-                    <span style={{
-                      display: 'inline-block',
-                      fontSize: '9px',
-                      fontWeight: '800',
+                  {/* Left-Aligned Editorial Headline Block */}
+                  <div style={{ maxWidth: '580px', zIndex: 2 }}>
+                    {/* Editorial Kicker Badge */}
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontSize: '11px',
+                      fontWeight: '700',
+                      letterSpacing: '1px',
+                      color: isDark ? '#10b981' : '#059669',
                       textTransform: 'uppercase',
-                      letterSpacing: '0.8px',
-                      color: isDark ? '#d4d4d8' : '#52525b',
-                      border: `1px solid ${isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.1)'}`,
-                      borderRadius: '9999px',
-                      padding: '3px 10px',
-                      marginBottom: '16px',
-                      backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(255, 255, 255, 0.3)'
+                      marginBottom: '14px'
                     }}>
-                      BHARAT EV REVOLUTION
-                    </span>
+                      <span>The Next Era of Mobility</span>
+                      <span style={{ fontSize: '13px' }}>↗</span>
+                    </div>
 
+                    {/* Editorial Headline */}
                     <h1 style={{
-                      fontSize: '44px',
-                      fontWeight: '900',
-                      lineHeight: 1.05,
-                      textTransform: 'uppercase',
-                      letterSpacing: '-1.2px',
-                      color: isDark ? '#ffffff' : '#1a1a1d',
+                      fontSize: '56px',
+                      fontFamily: 'Georgia, serif',
+                      fontWeight: '400',
+                      lineHeight: 1.08,
+                      letterSpacing: '-1.5px',
+                      color: themeStyles.text,
                       margin: '0 0 16px 0'
                     }}>
-                      ELECTRIC SCOOTERS<br />FOR SPEED, RANGE<br />AND MOTION<br />ACROSS BHARAT
+                      Ride Beyond<br />
+                      <span style={{ fontStyle: 'italic', fontWeight: '400' }}>Horizons</span>
                     </h1>
 
+                    {/* Sub-description */}
                     <p style={{
-                      fontSize: '11px',
-                      lineHeight: 1.6,
-                      color: isDark ? '#a1a1aa' : '#52525b',
-                      maxWidth: '340px',
-                      margin: '0 0 24px 0'
+                      fontSize: '12px',
+                      lineHeight: 1.7,
+                      color: themeStyles.subtext,
+                      maxWidth: '420px',
+                      margin: '0 0 28px 0'
                     }}>
-                      Explore India's premier multi-brand electric mobility platform with high-speed flagships, low-speed non-RTO commuters, smart Lithium-ion packs, and certified riding safety gear.
+                      Discover India's most advanced multi-brand electric scooters, swappable Lithium battery networks, and certified rider protection. Unmatched range, zero emissions.
                     </p>
 
-                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                      <span 
+                    {/* Primary Dark Pill Button with Arrow */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                      <button 
                         onClick={() => openCategory('High-Speed EV')}
                         style={{
-                          backgroundColor: isDark ? '#ffffff' : '#3f3d38',
+                          backgroundColor: isDark ? '#ffffff' : '#18181b',
                           color: isDark ? '#18181b' : '#ffffff',
-                          textDecoration: 'none',
-                          height: '38px',
-                          padding: '0 20px',
+                          border: 'none',
+                          height: '42px',
+                          padding: '0 24px',
                           borderRadius: '9999px',
                           fontSize: '11.5px',
                           fontWeight: '700',
                           display: 'inline-flex',
                           alignItems: 'center',
-                          gap: '8px',
-                          cursor: 'pointer'
+                          gap: '10px',
+                          cursor: 'pointer',
+                          boxShadow: '0 6px 20px rgba(0,0,0,0.2)',
+                          transition: 'transform 0.15s ease'
                         }}
+                        onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+                        onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
                       >
-                        <span>Explore Scooters</span>
-                        <Icons.ArrowRight />
-                      </span>
-
-                      <span 
-                        onClick={() => openCategory('Low-Speed EV')} 
-                        style={{
-                          backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(255, 255, 255, 0.5)',
+                        <span>Explore Fleet</span>
+                        <div style={{
+                          width: '20px',
+                          height: '20px',
+                          borderRadius: '50%',
+                          backgroundColor: isDark ? '#18181b' : '#ffffff',
                           color: isDark ? '#ffffff' : '#18181b',
-                          textDecoration: 'none',
-                          height: '38px',
-                          padding: '0 18px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '10px'
+                        }}>
+                          →
+                        </div>
+                      </button>
+
+                      <button 
+                        onClick={() => openCategory('Low-Speed EV')}
+                        style={{
+                          backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.06)',
+                          backdropFilter: 'blur(8px)',
+                          color: themeStyles.text,
+                          border: `1px solid ${themeStyles.border}`,
+                          height: '42px',
+                          padding: '0 20px',
                           borderRadius: '9999px',
                           fontSize: '11.5px',
                           fontWeight: '600',
-                          display: 'inline-flex',
-                          alignItems: 'center',
                           cursor: 'pointer'
                         }}
                       >
-                        Low-Speed (No License)
-                      </span>
+                        Non-RTO Commuters
+                      </button>
                     </div>
                   </div>
 
-                  <div style={{ position: 'relative', height: '420px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <img 
-                      src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=85" 
-                      alt="High-Speed Indian EV Scooter" 
-                      style={{ height: '100%', maxHeight: '410px', objectFit: 'contain', zIndex: 2, filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.18))' }}
-                    />
-
-                    {/* Floating Guarantee Cards */}
-                    <div style={{ position: 'absolute', right: '-10px', top: '30px', display: 'flex', flexDirection: 'column', gap: '10px', zIndex: 3 }}>
-                      {[
-                        { title: "Pan-India Home Delivery", sub: "RTO registered & road-ready", icon: <Icons.Truck /> },
-                        { title: "Doorstep Test Ride", sub: "Book via GBGX App", icon: <Icons.Zap /> },
-                        { title: "100% Genuine OEM", sub: "FAME-II & AIS 156 certified", icon: <Icons.Shield /> }
-                      ].map((card, i) => (
-                        <div key={i} style={{
-                          backgroundColor: isDark ? 'rgba(30, 30, 34, 0.85)' : 'rgba(255, 255, 255, 0.85)',
-                          backdropFilter: 'blur(8px)',
-                          borderRadius: '16px',
-                          padding: '12px 16px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '12px',
-                          width: '190px',
-                          boxShadow: '0 4px 14px rgba(0,0,0,0.08)',
-                          border: `1px solid ${themeStyles.border}`
-                        }}>
-                          <div style={{ width: '30px', height: '30px', borderRadius: '8px', backgroundColor: isDark ? '#27272a' : '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            {card.icon}
-                          </div>
-                          <div>
-                            <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>{card.title}</div>
-                            <div style={{ fontSize: '8.5px', color: themeStyles.subtext }}>{card.sub}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Social Proof Widget */}
+                  {/* Floating "Scroll Down" Indicator (Right side) */}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '36px',
+                    right: '40px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '6px',
+                    cursor: 'pointer',
+                    zIndex: 3
+                  }}
+                  onClick={() => document.getElementById('ev-catalog')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    <span style={{ fontSize: '9px', fontWeight: '700', letterSpacing: '1px', textTransform: 'uppercase', color: themeStyles.subtext }}>
+                      Scroll Down
+                    </span>
                     <div style={{
-                      position: 'absolute',
-                      bottom: '10px',
-                      right: '20px',
-                      backgroundColor: themeStyles.cardBg,
-                      borderRadius: '9999px',
-                      padding: '6px 16px',
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      border: `1px solid ${themeStyles.border}`,
+                      backgroundColor: isDark ? 'rgba(24,24,27,0.7)' : 'rgba(255,255,255,0.8)',
+                      backdropFilter: 'blur(6px)',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '12px',
-                      zIndex: 3,
-                      boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-                      border: `1px solid ${themeStyles.border}`
+                      justifyContent: 'center',
+                      fontSize: '12px',
+                      color: themeStyles.text
                     }}>
-                      <div style={{ display: 'flex', marginLeft: '-4px' }}>
-                        {[
-                          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80",
-                          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80",
-                          "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80"
-                        ].map((av, idx) => (
-                          <img key={idx} src={av} alt="Rider" style={{ width: '22px', height: '22px', borderRadius: '50%', border: '2px solid #fff', marginLeft: '-6px', objectFit: 'cover' }} />
-                        ))}
-                      </div>
-                      <div style={{ lineHeight: 1.1 }}>
-                        <div style={{ fontSize: '10px', fontWeight: '800', color: themeStyles.text }}>15,000+ EV Riders</div>
-                        <div style={{ fontSize: '9px', color: themeStyles.subtext, display: 'flex', alignItems: 'center', gap: '2px' }}>
-                          <span>4.9</span>
-                          <span style={{ color: '#f59e0b' }}>★★★★★</span>
-                        </div>
-                      </div>
+                      ↓
                     </div>
                   </div>
+                </div>
+
+                {/* Floating Modular "Find My EV" Pill Widget (Roamora Style) */}
+                <div style={{
+                  position: 'relative',
+                  marginTop: '-38px',
+                  zIndex: 10,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  padding: '0 20px'
+                }}>
+                  <div style={{
+                    backgroundColor: isDark ? '#18181b' : '#ffffff',
+                    borderRadius: '9999px',
+                    padding: '8px 12px 8px 24px',
+                    boxShadow: '0 16px 36px rgba(0,0,0,0.18)',
+                    border: `1px solid ${themeStyles.border}`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '20px',
+                    maxWidth: '960px',
+                    width: '100%',
+                    backdropFilter: 'blur(10px)'
+                  }}>
+                    {/* Field 1: Scooter Type */}
+                    <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '16px' }}>⚡</span>
+                      <div>
+                        <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>EV Type?</div>
+                        <select 
+                          value={evTab}
+                          onChange={(e) => setEvTab(e.target.value)}
+                          style={{ background: 'none', border: 'none', outline: 'none', fontSize: '10px', color: themeStyles.subtext, cursor: 'pointer', padding: 0 }}
+                        >
+                          <option value="High-Speed" style={{ background: themeStyles.cardBg }}>High Speed (RTO)</option>
+                          <option value="Low-Speed" style={{ background: themeStyles.cardBg }}>Slow EV (Non-RTO)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div style={{ width: '1px', height: '30px', backgroundColor: themeStyles.border }} />
+
+                    {/* Field 2: Target Range */}
+                    <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '16px' }}>📍</span>
+                      <div>
+                        <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>IDC Range</div>
+                        <div style={{ fontSize: '10px', color: themeStyles.subtext }}>120 km - 212 km</div>
+                      </div>
+                    </div>
+
+                    <div style={{ width: '1px', height: '30px', backgroundColor: themeStyles.border }} />
+
+                    {/* Field 3: City / State */}
+                    <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '16px' }}>🇮🇳</span>
+                      <div>
+                        <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>Delivery City</div>
+                        <div style={{ fontSize: '10px', color: themeStyles.subtext }}>Bengaluru, NCR, Pune</div>
+                      </div>
+                    </div>
+
+                    <div style={{ width: '1px', height: '30px', backgroundColor: themeStyles.border }} />
+
+                    {/* Field 4: Ownership */}
+                    <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontSize: '16px' }}>🛡️</span>
+                      <div>
+                        <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>Subsidy</div>
+                        <div style={{ fontSize: '10px', color: '#10b981', fontWeight: '700' }}>FAME-II Included</div>
+                      </div>
+                    </div>
+
+                    {/* Action Search Button */}
+                    <button 
+                      onClick={() => openCategory('EV-Scooters')}
+                      style={{
+                        backgroundColor: isDark ? '#ffffff' : '#18181b',
+                        color: isDark ? '#18181b' : '#ffffff',
+                        border: 'none',
+                        borderRadius: '9999px',
+                        height: '44px',
+                        padding: '0 24px',
+                        fontSize: '11px',
+                        fontWeight: '800',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        cursor: 'pointer',
+                        flexShrink: 0
+                      }}
+                    >
+                      <span>Find EV</span>
+                      <Icons.Search />
+                    </button>
+                  </div>
+                </div>
+
+                {/* 4-Item Value Proposition Bar (Directly Matching Roamora) */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '20px',
+                  padding: '40px 20px 20px 20px',
+                  maxWidth: '1200px',
+                  margin: '0 auto'
+                }}>
+                  {[
+                    {
+                      icon: "🛵",
+                      title: "Certified Multi-Brand Fleet",
+                      desc: "Top models from Ather, Ola, TVS, Chetak, and Simple."
+                    },
+                    {
+                      icon: "🔋",
+                      title: "AIS-156 Smart Battery Cells",
+                      desc: "Active CAN-BMS thermal protection tested for Indian climate."
+                    },
+                    {
+                      icon: "🏷️",
+                      title: "FAME-II Best Price Direct",
+                      desc: "Direct government EV subsidies and upfront RTO assistance."
+                    },
+                    {
+                      icon: "🛠️",
+                      title: "24/7 Roadside Assistance",
+                      desc: "Doorstep test rides, battery swapping, and genuine parts."
+                    }
+                  ].map((item, idx) => (
+                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                      <div style={{
+                        width: '36px',
+                        height: '36px',
+                        borderRadius: '12px',
+                        backgroundColor: themeStyles.pillBg,
+                        border: `1px solid ${themeStyles.border}`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '18px',
+                        flexShrink: 0
+                      }}>
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 style={{ fontSize: '12px', fontWeight: '800', color: themeStyles.text, marginBottom: '4px' }}>
+                          {item.title}
+                        </h4>
+                        <p style={{ fontSize: '10px', color: themeStyles.subtext, lineHeight: 1.5, margin: 0 }}>
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Reveal>
