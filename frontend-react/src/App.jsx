@@ -4,13 +4,17 @@ import React, { useState, useEffect, useRef } from 'react';
 function IntroLoader({ onComplete }) {
   const [stage, setStage] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
 
   useEffect(() => {
     const t1 = setTimeout(() => setStage(1), 1200);
     const t2 = setTimeout(() => setStage(2), 2400);
     const t3 = setTimeout(() => setStage(3), 3600);
     const t4 = setTimeout(() => setFadeOut(true), 5000);
-    const t5 = setTimeout(() => onComplete(), 5500);
+    const t5 = setTimeout(() => {
+      if (onCompleteRef.current) onCompleteRef.current();
+    }, 5500);
 
     return () => {
       clearTimeout(t1);
@@ -19,7 +23,7 @@ function IntroLoader({ onComplete }) {
       clearTimeout(t4);
       clearTimeout(t5);
     };
-  }, [onComplete]);
+  }, []);
 
   const LoaderIcons = {
     Scooter: () => (
@@ -48,36 +52,471 @@ function IntroLoader({ onComplete }) {
   ];
 
   return (
+    <>
+      <style>{`
+        @keyframes gbgxRotate3D {
+          0% { transform: perspective(800px) rotateY(0deg) scale(0.94); }
+          50% { transform: perspective(800px) rotateY(180deg) scale(1.06); }
+          100% { transform: perspective(800px) rotateY(360deg) scale(0.94); }
+        }
+        @keyframes gbgxRingSpin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes gbgxPulseGlow {
+          0%, 100% { opacity: 0.35; transform: scale(1); }
+          50% { opacity: 0.75; transform: scale(1.1); }
+        }
+        @keyframes gbgxLogoZoomIn {
+          0% { transform: scale(0.65); opacity: 0; filter: blur(8px); }
+          60% { transform: scale(1.1); opacity: 1; filter: blur(0px); }
+          85% { transform: scale(1); opacity: 1; }
+          100% { transform: scale(1.35); opacity: 0; filter: blur(5px); }
+        }
+        @keyframes gbgxStageFade {
+          0% { opacity: 0; transform: scale(0.85); }
+          15% { opacity: 1; transform: scale(1); }
+          85% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0; transform: scale(1.08); }
+        }
+      `}</style>
+
+      <div style={{
+        position: 'fixed', inset: 0, backgroundColor: '#09090b', zIndex: 99999,
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        overflow: 'hidden', opacity: fadeOut ? 0 : 1, transform: fadeOut ? 'scale(1.04)' : 'scale(1)',
+        transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        pointerEvents: fadeOut ? 'none' : 'auto'
+      }}>
+        <div style={{
+          position: 'absolute', width: '500px', height: '500px', borderRadius: '50%',
+          background: stage === 3 ? 'radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0) 70%)' : `radial-gradient(circle, ${stagesData[stage]?.accent}33 0%, rgba(0,0,0,0) 70%)`,
+          filter: 'blur(60px)', animation: 'gbgxPulseGlow 3s ease-in-out infinite', transition: 'background 0.4s ease'
+        }} />
+
+        {stage < 3 && (
+          <div key={stage} style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2, animation: 'gbgxStageFade 1.3s ease-in-out forwards' }}>
+            <div style={{ position: 'absolute', width: '210px', height: '210px', borderRadius: '50%', border: `2px dashed ${stagesData[stage].accent}66`, animation: 'gbgxRingSpin 6s linear infinite', pointerEvents: 'none' }} />
+            <div style={{ width: '140px', height: '140px', borderRadius: '32px', backgroundColor: '#121216', border: `1px solid ${stagesData[stage].accent}55`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 12px 35px ${stagesData[stage].accent}25`, animation: 'gbgxRotate3D 2.6s ease-in-out infinite alternate', willChange: 'transform' }}>
+              {stagesData[stage].icon}
+            </div>
+            <div style={{ textAlign: 'center', marginTop: '35px' }}>
+              <div style={{ fontSize: '11.5px', fontWeight: '900', letterSpacing: '2px', color: stagesData[stage].accent, textTransform: 'uppercase', marginBottom: '5px' }}>
+                {stagesData[stage].label}
+              </div>
+              <div style={{ fontSize: '9.5px', color: '#a1a1aa', letterSpacing: '0.8px' }}>
+                {stagesData[stage].sub}
+              </div>
+              <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', marginTop: '18px' }}>
+                {[0, 1, 2].map(i => (
+                  <div key={i} style={{ width: stage === i ? '22px' : '6px', height: '4px', borderRadius: '2px', backgroundColor: stage === i ? stagesData[stage].accent : '#27272a', transition: 'all 0.3s ease' }} />
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {stage === 3 && (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2, animation: 'gbgxLogoZoomIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards' }}>
+            <img src="/GBGX_logo_black_transparent.png" alt="GBGX Logo" onError={(e) => { e.target.style.display = 'none'; }} style={{ height: '52px', width: 'auto', filter: 'invert(1) drop-shadow(0 0 25px rgba(255,255,255,0.6))', display: 'block', marginBottom: '16px' }} />
+            <div style={{ fontSize: '28px', fontWeight: '900', letterSpacing: '4px', color: '#ffffff', textTransform: 'uppercase' }}>GBGX</div>
+            <div style={{ fontSize: '10px', fontWeight: '800', letterSpacing: '3px', color: '#10b981', textTransform: 'uppercase', marginTop: '6px' }}>BHARAT ELECTRIC MOBILITY</div>
+          </div>
+        )}
+
+        <button onClick={onComplete} style={{ position: 'absolute', bottom: '24px', right: '24px', background: 'none', border: '1px solid #27272a', color: '#71717a', padding: '6px 14px', borderRadius: '9999px', fontSize: '9.5px', fontWeight: '700', cursor: 'pointer', zIndex: 10, letterSpacing: '1px' }}>
+          SKIP INTRO →
+        </button>
+      </div>
+    </>
+  );
+}
+
+// ================= AUTH MODAL COMPONENT (SIGNUP JUMPS TO SIGNIN) =================
+function AuthModal({ isOpen, onClose, initialMode = 'signup', onAuthSuccess }) {
+  const [mode, setMode] = useState(initialMode);
+  const [emailOrPhone, setEmailOrPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [agreedTerms, setAgreedTerms] = useState(true);
+  const [signupSuccessNotice, setSignupSuccessNotice] = useState(false);
+
+  useEffect(() => {
+    setMode(initialMode);
+    setSignupSuccessNotice(false);
+  }, [initialMode, isOpen]);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // IF SIGN UP: validate inputs, reset passwords, and JUMP TO SIGN IN
+    if (mode === 'signup') {
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+      if (!agreedTerms) {
+        alert("Please agree to the terms of service.");
+        return;
+      }
+      
+      setMode('signin');
+      setPassword('');
+      setConfirmPassword('');
+      setSignupSuccessNotice(true);
+      return;
+    }
+
+    // IF SIGN IN: Authenticate user & complete session
+    const userName = emailOrPhone.includes('@') 
+      ? emailOrPhone.split('@')[0] 
+      : (emailOrPhone || "Rohan (#GBGX)");
+    
+    onAuthSuccess(userName);
+    setSignupSuccessNotice(false);
+    onClose();
+  };
+
+  return (
     <div style={{
-      position: 'fixed', inset: 0, backgroundColor: '#09090b', zIndex: 9999,
-      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      overflow: 'hidden', opacity: fadeOut ? 0 : 1, transform: fadeOut ? 'scale(1.04)' : 'scale(1)',
-      transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+      position: 'fixed',
+      inset: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      backdropFilter: 'blur(8px)',
+      zIndex: 100000,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
     }}>
       <div style={{
-        position: 'absolute', width: '500px', height: '500px', borderRadius: '50%',
-        background: stage === 3 ? 'radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0) 70%)' : `radial-gradient(circle, ${stagesData[stage]?.accent}26 0%, rgba(0,0,0,0) 70%)`,
-        filter: 'blur(50px)', transition: 'background 0.5s ease'
-      }} />
-      {stage < 3 && (
-        <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
-          <div style={{ position: 'absolute', width: '200px', height: '200px', borderRadius: '50%', border: `2px dashed ${stagesData[stage].accent}55`, animation: 'gbgxRotate3D 4s linear infinite', pointerEvents: 'none' }} />
-          <div style={{ width: '140px', height: '140px', borderRadius: '32px', backgroundColor: '#121215', border: `1px solid ${stagesData[stage].accent}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 30px ${stagesData[stage].accent}22`, filter: 'drop-shadow(0 15px 30px rgba(0,0,0,0.6))' }}>
-            {stagesData[stage].icon}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: '35px' }}>
-            <div style={{ fontSize: '11px', fontWeight: '900', letterSpacing: '2px', color: stagesData[stage].accent, textTransform: 'uppercase', marginBottom: '4px' }}>{stagesData[stage].label}</div>
-            <div style={{ fontSize: '9px', color: '#71717a', letterSpacing: '0.8px' }}>{stagesData[stage].sub}</div>
+        position: 'relative',
+        width: '100%',
+        maxWidth: '880px',
+        backgroundColor: '#1b1d21',
+        borderRadius: '24px',
+        overflow: 'hidden',
+        boxShadow: '0 30px 70px rgba(0,0,0,0.6)',
+        display: 'grid',
+        gridTemplateColumns: '320px 1fr',
+        border: '1px solid rgba(255,255,255,0.08)'
+      }}>
+        {/* Close Button */}
+        <button 
+          onClick={onClose}
+          style={{
+            position: 'absolute',
+            top: '20px',
+            right: '20px',
+            background: 'none',
+            border: 'none',
+            color: '#71757f',
+            cursor: 'pointer',
+            padding: '4px',
+            zIndex: 10
+          }}
+        >
+          <Icons.Close />
+        </button>
+
+        {/* LEFT COLUMN: BOTANICAL GREEN LEAF BANNER */}
+        <div style={{
+          position: 'relative',
+          overflow: 'hidden',
+          minHeight: '480px',
+          backgroundImage: `url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center left'
+        }}>
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to right, rgba(0,0,0,0.1) 0%, rgba(27,29,33,0.85) 100%)'
+          }} />
+          
+          <div style={{
+            position: 'absolute',
+            bottom: '24px',
+            left: '24px',
+            zIndex: 2
+          }}>
+            <span style={{
+              fontSize: '10px',
+              fontWeight: '800',
+              letterSpacing: '1.5px',
+              color: '#10b981',
+              textTransform: 'uppercase',
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              backdropFilter: 'blur(6px)',
+              padding: '4px 10px',
+              borderRadius: '6px'
+            }}>
+              100% Clean Mobility
+            </span>
           </div>
         </div>
-      )}
-      {stage === 3 && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
-          <img src="/GBGX_logo_black_transparent.png" alt="GBGX Logo" style={{ height: '48px', width: 'auto', filter: 'invert(1) drop-shadow(0 0 25px rgba(255,255,255,0.4))', display: 'block', marginBottom: '16px' }} />
-          <div style={{ fontSize: '9.5px', fontWeight: '800', letterSpacing: '3px', color: '#a1a1aa', textTransform: 'uppercase' }}>BHARAT ELECTRIC MOBILITY</div>
+
+        {/* RIGHT COLUMN: FORM & SOCIAL NETWORKS */}
+        <div style={{
+          padding: '36px 44px 28px 44px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}>
+          {/* TOP NAV TABS */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <button
+              onClick={() => { setMode('signup'); setSignupSuccessNotice(false); }}
+              style={{
+                backgroundColor: mode === 'signup' ? '#292b32' : 'transparent',
+                color: mode === 'signup' ? '#ffffff' : '#6f7480',
+                border: 'none',
+                padding: '6px 14px',
+                borderRadius: '6px',
+                fontSize: '11px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              Sign up
+            </button>
+
+            <button
+              onClick={() => { setMode('signin'); setSignupSuccessNotice(false); }}
+              style={{
+                backgroundColor: mode === 'signin' ? '#292b32' : 'transparent',
+                color: mode === 'signin' ? '#ffffff' : '#6f7480',
+                border: 'none',
+                padding: '6px 14px',
+                borderRadius: '6px',
+                fontSize: '11px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                marginRight: '36px',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              Sign in
+            </button>
+          </div>
+
+          {/* Jump-to-signin Success Notice Banner */}
+          {signupSuccessNotice && mode === 'signin' && (
+            <div style={{
+              backgroundColor: 'rgba(16, 185, 129, 0.15)',
+              color: '#10b981',
+              border: '1px solid rgba(16, 185, 129, 0.3)',
+              padding: '8px 14px',
+              borderRadius: '8px',
+              fontSize: '10.5px',
+              fontWeight: '700',
+              marginBottom: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}>
+              <span>✓</span>
+              <span>Account created successfully! Please sign in with your password.</span>
+            </div>
+          )}
+
+          {/* FORM BODY */}
+          <form onSubmit={handleSubmit}>
+            <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr', gap: '30px', alignItems: 'start' }}>
+              <div>
+                <div style={{ fontSize: '10px', color: '#6f7480', fontWeight: '700', textTransform: 'lowercase', marginBottom: '8px' }}>
+                  welcome
+                </div>
+                <h2 style={{ fontSize: '22px', fontWeight: '900', color: '#ffffff', lineHeight: 1.25, letterSpacing: '-0.4px' }}>
+                  {mode === 'signup' ? (
+                    <>Fill the form<br />to become<br />part of<br />team</>
+                  ) : (
+                    <>Welcome<br />back to the<br />clean EV<br />revolution</>
+                  )}
+                </h2>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{
+                  backgroundColor: '#262930',
+                  borderRadius: '8px',
+                  padding: '11px 16px',
+                  border: '1px solid rgba(255,255,255,0.06)'
+                }}>
+                  <input 
+                    type="text"
+                    required
+                    placeholder="E-mail or Phone"
+                    value={emailOrPhone}
+                    onChange={(e) => setEmailOrPhone(e.target.value)}
+                    style={{
+                      width: '100%',
+                      background: 'transparent',
+                      border: 'none',
+                      outline: 'none',
+                      color: '#ffffff',
+                      fontSize: '11px',
+                      fontWeight: '500'
+                    }}
+                  />
+                </div>
+
+                <div style={{
+                  backgroundColor: '#262930',
+                  borderRadius: '8px',
+                  padding: '11px 16px',
+                  border: '1px solid rgba(255,255,255,0.06)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
+                }}>
+                  <input 
+                    type="password"
+                    required
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    style={{
+                      width: '90%',
+                      background: 'transparent',
+                      border: 'none',
+                      outline: 'none',
+                      color: '#ffffff',
+                      fontSize: '11px',
+                      fontWeight: '500'
+                    }}
+                  />
+                  <span style={{ color: '#5f6470', fontSize: '11px' }}>🔒</span>
+                </div>
+
+                {mode === 'signup' && (
+                  <div style={{
+                    backgroundColor: '#262930',
+                    borderRadius: '8px',
+                    padding: '11px 16px',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}>
+                    <input 
+                      type="password"
+                      required
+                      placeholder="Confirm Password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      style={{
+                        width: '90%',
+                        background: 'transparent',
+                        border: 'none',
+                        outline: 'none',
+                        color: '#ffffff',
+                        fontSize: '11px',
+                        fontWeight: '500'
+                      }}
+                    />
+                    <span style={{ color: '#5f6470', fontSize: '11px' }}>🔒</span>
+                  </div>
+                )}
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '2px' }}>
+                  <input 
+                    type="checkbox"
+                    id="gbgx-terms"
+                    checked={agreedTerms}
+                    onChange={(e) => setAgreedTerms(e.target.checked)}
+                    style={{ accentColor: '#ffd8a8', width: '13px', height: '13px', cursor: 'pointer' }}
+                  />
+                  <label htmlFor="gbgx-terms" style={{ fontSize: '10px', color: '#7c818e', cursor: 'pointer' }}>
+                    {mode === 'signup' ? 'I agree to the terms of service' : 'Keep me signed in on this device'}
+                  </label>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginTop: '8px' }}>
+                  <button
+                    type="submit"
+                    style={{
+                      backgroundColor: '#fde0b2',
+                      color: '#1a1b1e',
+                      border: 'none',
+                      borderRadius: '6px',
+                      padding: '8px 24px',
+                      fontSize: '11.5px',
+                      fontWeight: '800',
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}
+                  >
+                    <span>Go</span>
+                    <span style={{ fontSize: '12px' }}>➔</span>
+                  </button>
+
+                  <div style={{ fontSize: '9px', color: '#6f7480', lineHeight: 1.35 }}>
+                    {mode === 'signup' ? (
+                      <>Do you already have the password? Please use the <span onClick={() => { setMode('signin'); setSignupSuccessNotice(false); }} style={{ color: '#fde0b2', textDecoration: 'underline', cursor: 'pointer' }}>login form</span></>
+                    ) : (
+                      <>Don't have an account yet? Please use the <span onClick={() => { setMode('signup'); setSignupSuccessNotice(false); }} style={{ color: '#fde0b2', textDecoration: 'underline', cursor: 'pointer' }}>sign up form</span></>
+                    )}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </form>
+
+          {/* SOCIAL NETWORKS BAR */}
+          <div style={{
+            borderTop: '1px solid #282a31',
+            paddingTop: '16px',
+            marginTop: '28px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
+            <span style={{ fontSize: '10px', color: '#5f6470', fontWeight: '700', textTransform: 'lowercase' }}>
+              social networks
+            </span>
+
+            <div style={{ display: 'flex', gap: '8px' }}>
+              {[
+                { name: 'Facebook', icon: 'f' },
+                { name: 'Apple', icon: '' },
+                { name: 'X', icon: '𝕏' },
+                { name: 'Google', icon: 'G' }
+              ].map((s, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => alert(`Sign in with ${s.name} is currently in demo mode.`)}
+                  style={{
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '50%',
+                    backgroundColor: '#292c34',
+                    color: '#9da3b4',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '11px',
+                    fontWeight: '800',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease'
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.color = '#18181b'; }}
+                  onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#292c34'; e.currentTarget.style.color = '#9da3b4'; }}
+                >
+                  {s.icon}
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
-      )}
-      <button onClick={onComplete} style={{ position: 'absolute', bottom: '24px', right: '24px', background: 'none', border: '1px solid #27272a', color: '#71717a', padding: '6px 14px', borderRadius: '9999px', fontSize: '9px', fontWeight: '700', cursor: 'pointer', zIndex: 10, letterSpacing: '1px' }}>SKIP INTRO →</button>
+      </div>
     </div>
   );
 }
@@ -97,11 +536,17 @@ function Reveal({ children, delay = 0, direction = 'up', style = {}, className =
           }
         });
       },
-      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
-    const elem = domRef.current;
-    if (elem) observer.observe(elem);
-    return () => { if (elem) observer.unobserve(elem); };
+
+    const currentElem = domRef.current;
+    if (currentElem) {
+      observer.observe(currentElem);
+    }
+
+    return () => {
+      if (currentElem) observer.unobserve(currentElem);
+    };
   }, []);
 
   const getTransform = () => {
@@ -117,7 +562,17 @@ function Reveal({ children, delay = 0, direction = 'up', style = {}, className =
   };
 
   return (
-    <div ref={domRef} className={className} style={{ ...style, opacity: isVisible ? 1 : 0, transform: getTransform(), transition: `opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`, willChange: 'opacity, transform' }}>
+    <div
+      ref={domRef}
+      className={className}
+      style={{
+        ...style,
+        opacity: isVisible ? 1 : 0,
+        transform: getTransform(),
+        transition: `opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        willChange: 'opacity, transform'
+      }}
+    >
       {children}
     </div>
   );
@@ -126,10 +581,14 @@ function Reveal({ children, delay = 0, direction = 'up', style = {}, className =
 // ================= ATTRIBUTE-BASED COSINE SIMILARITY ENGINE =================
 function tokenizeAndVectorizeAttributes(product) {
   const attributeCorpus = [
-    product.color || '', product.color || '',
+    product.color || '',
+    product.color || '',
     product.features || '',
-    product.compatibility || '', product.compatibility || '',
-    product.specs || '', product.brand || '', product.description || ''
+    product.compatibility || '',
+    product.compatibility || '',
+    product.specs || '',
+    product.brand || '',
+    product.description || ''
   ].join(' ').toLowerCase();
 
   const tokens = attributeCorpus.match(/\b[a-z0-9_-]+\b/g) || [];
@@ -165,30 +624,91 @@ function calculateAttributeCosineSimilarity(productA, productB) {
 
 // Precision SVGs
 const Icons = {
-  Search: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>),
-  Mic: ({ listening }) => (<svg width="14" height="14" viewBox="0 0 24 24" fill={listening ? "#ef4444" : "none"} stroke={listening ? "#ef4444" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>),
-  User: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>),
-  Sun: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>),
-  Moon: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>),
-  Heart: ({ active }) => (<svg width="15" height="15" viewBox="0 0 24 24" fill={active ? "#e11d48" : "none"} stroke={active ? "#e11d48" : "currentColor"} strokeWidth="1.8"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>),
-  Bag: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>),
-  Play: () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>),
-  Star: () => (<svg width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>),
-  Truck: () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><rect width="14" height="10" x="1" y="5" rx="2"/><path d="M15 10h4l3 3v2h-7v-5z"/><circle cx="5.5" cy="17.5" r="2.5"/><circle cx="18.5" cy="17.5" r="2.5"/></svg>),
-  Zap: () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>),
-  Shield: () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>),
-  ArrowRight: () => (<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>),
-  ArrowLeft: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>),
-  Close: () => (<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>),
-  Instagram: () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>),
-  Facebook: () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>),
-  YouTube: () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/></svg>),
-  LinkedIn: () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>),
-  TwitterX: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>),
-  AtherLogo: () => (<svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor"><path d="M50 5 L90 85 L72 85 L50 40 L28 85 L10 85 Z" /><polygon points="50,55 60,78 40,78" fill="#10b981" /></svg>),
-  OlaLogo: () => (<svg width="24" height="20" viewBox="0 0 100 80" fill="currentColor"><ellipse cx="50" cy="40" rx="36" ry="24" fill="none" stroke="currentColor" strokeWidth="12" /><circle cx="50" cy="40" r="10" fill="#10b981" /></svg>),
-  TVSLogo: () => (<svg width="32" height="18" viewBox="0 0 100 60" fill="currentColor"><path d="M5 10 L40 10 L25 50 L10 50 Z" /><path d="M45 10 L65 42 L85 10 L98 10 L75 50 L55 50 L35 18 Z" /><polygon points="85,38 98,38 94,50 81,50" fill="#ef4444" /></svg>),
-  ChetakLogo: () => (<svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor"><path d="M20 75 C 20 40, 50 15, 80 15 C 65 35, 65 60, 80 75 C 55 62, 35 62, 20 75 Z" /><circle cx="58" cy="42" r="7" fill="#3b82f6" /></svg>)
+  Search: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+  ),
+  Mic: ({ listening }) => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill={listening ? "#ef4444" : "none"} stroke={listening ? "#ef4444" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+      <line x1="12" x2="12" y1="19" y2="22"/>
+    </svg>
+  ),
+  User: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+  ),
+  Sun: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+  ),
+  Moon: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+  ),
+  Heart: ({ active }) => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill={active ? "#e11d48" : "none"} stroke={active ? "#e11d48" : "currentColor"} strokeWidth="1.8"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+  ),
+  Bag: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+  ),
+  Play: () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+  ),
+  Star: () => (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+  ),
+  Truck: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><rect width="14" height="10" x="1" y="5" rx="2"/><path d="M15 10h4l3 3v2h-7v-5z"/><circle cx="5.5" cy="17.5" r="2.5"/><circle cx="18.5" cy="17.5" r="2.5"/></svg>
+  ),
+  Zap: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+  ),
+  Shield: () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+  ),
+  ArrowRight: () => (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  ),
+  ArrowLeft: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+  ),
+  Close: () => (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  ),
+  Instagram: () => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+  ),
+  Facebook: () => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+  ),
+  YouTube: () => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/></svg>
+  ),
+  LinkedIn: () => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+  ),
+  TwitterX: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  ),
+  AtherLogo: () => (
+    <svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor">
+      <path d="M50 5 L90 85 L72 85 L50 40 L28 85 L10 85 Z" /><polygon points="50,55 60,78 40,78" fill="#10b981" />
+    </svg>
+  ),
+  OlaLogo: () => (
+    <svg width="24" height="20" viewBox="0 0 100 80" fill="currentColor">
+      <ellipse cx="50" cy="40" rx="36" ry="24" fill="none" stroke="currentColor" strokeWidth="12" /><circle cx="50" cy="40" r="10" fill="#10b981" />
+    </svg>
+  ),
+  TVSLogo: () => (
+    <svg width="32" height="18" viewBox="0 0 100 60" fill="currentColor">
+      <path d="M5 10 L40 10 L25 50 L10 50 Z" />
+      <path d="M45 10 L65 42 L85 10 L98 10 L75 50 L55 50 L35 18 Z" /><polygon points="85,38 98,38 94,50 81,50" fill="#ef4444" />
+    </svg>
+  ),
+  ChetakLogo: () => (
+    <svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor">
+      <path d="M20 75 C 20 40, 50 15, 80 15 C 65 35, 65 60, 80 75 C 55 62, 35 62, 20 75 Z" /><circle cx="58" cy="42" r="7" fill="#3b82f6" />
+    </svg>
+  )
 };
 
 // ================= MASTER PRODUCT CATALOG WITH ATTRIBUTES =================
@@ -355,6 +875,22 @@ const MASTER_PRODUCTS = [
     specs: "ECE 22.06 & DOT • Pinlock 30 Max",
     description: "ECE certified aerodynamic performance helmet with rear spoiler, emergency cheek pad release, and optical grade visor.",
     img: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    id: 303,
+    name: "Vega Bolt Bunny Black Helmet",
+    brand: "Vega",
+    category: "Accessories",
+    subCategory: "Helmet",
+    price: 2199,
+    rating: 4.6,
+    reviewsCount: 420,
+    color: "Glossy Black / Cyan Accents",
+    features: "Aerodynamic Shell, Removable Washable Padding, Scratch Resistant Visor, ISI Certified",
+    compatibility: "City Commuter EVs, Hero Eddy, Okinawa Lite, Probiker Gloves",
+    specs: "Aerodynamic Shell • Removable Padding",
+    description: "Lightweight commuter helmet with scratch-resistant coated visor and high-impact virgin ABS material.",
+    img: "https://images.unsplash.com/photo-1578874691223-a49626e80062?auto=format&fit=crop&w=500&q=80"
   },
 
   // Accessories - Jackets
@@ -608,7 +1144,13 @@ export default function App() {
   const [loadingIntro, setLoadingIntro] = useState(true);
   const [lang, setLang] = useState('EN');
   const [theme, setTheme] = useState('dark');
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  
+  // Auth state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState('signup'); // 'signup' | 'signin'
+
   const [hoveredNav, setHoveredNav] = useState(null);
 
   // Search Engine & Controls
@@ -753,6 +1295,16 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleOpenAuth = (mode) => {
+    setAuthModalMode(mode);
+    setShowAuthModal(true);
+  };
+
+  const handleAuthSuccess = (name) => {
+    setIsLoggedIn(true);
+    setCurrentUser(name);
+  };
+
   const liveMatches = searchQuery.trim()
     ? MASTER_PRODUCTS.filter(p => {
         const fullText = `${p.name} ${p.brand} ${p.category} ${p.subCategory || ''} ${p.specs} ${p.color || ''} ${p.features || ''} ${p.compatibility || ''}`.toLowerCase();
@@ -791,6 +1343,14 @@ export default function App() {
     <>
       {/* ================= INTRO ANIMATION PRELOADER ================= */}
       {loadingIntro && <IntroLoader onComplete={() => setLoadingIntro(false)} />}
+
+      {/* ================= SIGNUP & LOGIN MODAL ================= */}
+      <AuthModal 
+        isOpen={showAuthModal}
+        initialMode={authModalMode}
+        onClose={() => setShowAuthModal(false)}
+        onAuthSuccess={handleAuthSuccess}
+      />
 
       <div style={{ backgroundColor: themeStyles.bg, color: themeStyles.text, minHeight: '100vh', width: '100%', overflowX: 'hidden', transition: 'background-color 0.25s ease, color 0.25s ease' }}>
 
@@ -859,7 +1419,7 @@ export default function App() {
                       cursor: 'pointer',
                       color: themeStyles.text
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f6'}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f5'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                     >
                       <div style={{ fontSize: '12px', fontWeight: '700' }}>{item.name}</div>
@@ -908,7 +1468,7 @@ export default function App() {
                       fontSize: '11.5px',
                       fontWeight: '600'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f6'}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f5'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                     >
                       {acc.name}
@@ -958,7 +1518,7 @@ export default function App() {
                       fontSize: '11px',
                       fontWeight: '600'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f6'}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f5'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                     >
                       {brand}
@@ -1235,14 +1795,20 @@ export default function App() {
               {t.partner}
             </span>
 
+            {/* Account / User Menu */}
             <div 
               onMouseEnter={() => setHoveredNav('account')}
               onMouseLeave={() => setHoveredNav(null)}
               style={{ position: 'relative' }}
             >
-              <button style={{ backgroundColor: isDark ? '#2e2e33' : '#3f3d38', color: '#fff', border: 'none', height: '34px', padding: '0 14px', borderRadius: '9999px', fontSize: '11px', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+              <button 
+                onClick={() => {
+                  if (!isLoggedIn) handleOpenAuth('signin');
+                }}
+                style={{ backgroundColor: isDark ? '#2e2e33' : '#3f3d38', color: '#fff', border: 'none', height: '34px', padding: '0 14px', borderRadius: '9999px', fontSize: '11px', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
+              >
                 <Icons.User />
-                <span>{isLoggedIn ? "Rohan (#GBGX)" : t.account}</span>
+                <span>{isLoggedIn ? (currentUser || "Rohan (#GBGX)") : t.account}</span>
               </button>
 
               {hoveredNav === 'account' && (
@@ -1264,7 +1830,7 @@ export default function App() {
                   {isLoggedIn ? (
                     <>
                       <div style={{ padding: '8px 12px', borderBottom: `1px solid ${themeStyles.border}` }}>
-                        <div style={{ fontSize: '12px', fontWeight: '800' }}>Rohan Sharma</div>
+                        <div style={{ fontSize: '12px', fontWeight: '800' }}>{currentUser || "Rohan Sharma"}</div>
                         <div style={{ fontSize: '10px', color: '#10b981', fontWeight: '700' }}>ID: GBGX-9842</div>
                       </div>
                       <div style={{ padding: '8px 12px', fontSize: '11px', display: 'flex', justifyContent: 'space-between' }}>
@@ -1273,17 +1839,17 @@ export default function App() {
                       <div style={{ padding: '8px 12px', fontSize: '11px', display: 'flex', justifyContent: 'space-between' }}>
                         <span>Cart</span> <span>({cartCount})</span>
                       </div>
-                      <button onClick={() => setIsLoggedIn(false)} style={{ border: 'none', background: 'none', color: '#ef4444', padding: '8px 12px', fontSize: '11px', fontWeight: '700', cursor: 'pointer', textAlign: 'left' }}>
+                      <button onClick={() => { setIsLoggedIn(false); setCurrentUser(null); }} style={{ border: 'none', background: 'none', color: '#ef4444', padding: '8px 12px', fontSize: '11px', fontWeight: '700', cursor: 'pointer', textAlign: 'left' }}>
                         Log Out
                       </button>
                     </>
                   ) : (
                     <>
-                      <button onClick={() => setIsLoggedIn(true)} style={{ backgroundColor: '#18181b', color: '#fff', border: 'none', padding: '8px', borderRadius: '8px', fontSize: '11px', fontWeight: '700', cursor: 'pointer' }}>
-                        Log In
+                      <button onClick={() => handleOpenAuth('signin')} style={{ backgroundColor: '#18181b', color: '#fff', border: 'none', padding: '8px', borderRadius: '8px', fontSize: '11px', fontWeight: '700', cursor: 'pointer' }}>
+                        Sign In
                       </button>
-                      <button onClick={() => setIsLoggedIn(true)} style={{ backgroundColor: 'transparent', color: themeStyles.text, border: `1px solid ${themeStyles.border}`, padding: '8px', borderRadius: '8px', fontSize: '11px', fontWeight: '600', cursor: 'pointer', marginTop: '4px' }}>
-                        Create Account
+                      <button onClick={() => handleOpenAuth('signup')} style={{ backgroundColor: 'transparent', color: themeStyles.text, border: `1px solid ${themeStyles.border}`, padding: '8px', borderRadius: '8px', fontSize: '11px', fontWeight: '600', cursor: 'pointer', marginTop: '4px' }}>
+                        Sign Up
                       </button>
                     </>
                   )}
@@ -1464,7 +2030,7 @@ export default function App() {
           </div>
         )}
 
-        {/* VIEW 2: PRODUCT DETAIL PAGE (PDP) WITH ATTRIBUTE-BASED COSINE SIMILARITY RECOMMENDATIONS */}
+        {/* VIEW 2: PRODUCT DETAIL PAGE (PDP) WITH TEST RIDE RESTRICTED ONLY TO SCOOTERS */}
         {router.page === 'product' && router.product && (() => {
           const prod = router.product;
           
@@ -1511,6 +2077,9 @@ export default function App() {
 
           const recommendedItems = getRecommendations();
           const sameCategoryItems = MASTER_PRODUCTS.filter(p => p.category === prod.category && p.id !== prod.id);
+
+          // Check whether current item is an EV Scooter
+          const isEvScooter = prod.category === 'EV-Scooters' || (prod.subCategory || '').toLowerCase() === 'scooter';
 
           return (
             <div style={{ maxWidth: '1380px', margin: '30px auto', padding: '0 20px 80px 20px' }}>
@@ -1582,12 +2151,16 @@ export default function App() {
                     >
                       Add to Cart
                     </button>
-                    <button 
-                      onClick={() => alert(`Test ride or consultation booked for ${prod.name}`)}
-                      style={{ backgroundColor: 'transparent', color: themeStyles.text, border: `1px solid ${themeStyles.border}`, borderRadius: '9999px', padding: '12px 24px', fontSize: '12px', fontWeight: '700', cursor: 'pointer' }}
-                    >
-                      Book Test Ride
-                    </button>
+
+                    {/* ONLY SHOW "BOOK TEST RIDE" FOR EV-SCOOTERS */}
+                    {isEvScooter && (
+                      <button 
+                        onClick={() => alert(`Free doorstep test ride booked for ${prod.name}! Our representative will contact you shortly.`)}
+                        style={{ backgroundColor: 'transparent', color: themeStyles.text, border: `1px solid ${themeStyles.border}`, borderRadius: '9999px', padding: '12px 24px', fontSize: '12px', fontWeight: '700', cursor: 'pointer' }}
+                      >
+                        Book Test Ride
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -1645,7 +2218,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Cosine Similarity Recommendations */}
+              {/* Recommendations */}
               {recommendedItems.length > 0 && (
                 <div style={{ marginBottom: '50px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '8px' }}>
@@ -1760,7 +2333,6 @@ export default function App() {
             {/* ================= 2. LUXURY EDITORIAL HERO SECTION (ROAMORA STYLE) ================= */}
             <Reveal direction="scale">
               <div style={{ maxWidth: '1380px', margin: '14px auto 0 auto', padding: '0 20px' }}>
-                {/* Hero Panoramic Banner */}
                 <div style={{
                   position: 'relative',
                   borderRadius: '32px',
@@ -1777,9 +2349,7 @@ export default function App() {
                   backgroundPosition: 'center 40%',
                   boxShadow: '0 20px 40px rgba(0,0,0,0.15)'
                 }}>
-                  {/* Left-Aligned Editorial Headline Block */}
                   <div style={{ maxWidth: '580px', zIndex: 2 }}>
-                    {/* Editorial Tagline / Kicker Badge */}
                     <div style={{
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -1795,7 +2365,6 @@ export default function App() {
                       <span style={{ fontSize: '13px' }}>⚡</span>
                     </div>
 
-                    {/* Editorial Headline */}
                     <h1 style={{
                       fontSize: '56px',
                       fontFamily: 'Georgia, serif',
@@ -1809,7 +2378,6 @@ export default function App() {
                       <span style={{ fontStyle: 'italic', fontWeight: '400' }}>the Horizon</span>
                     </h1>
 
-                    {/* Sub-description */}
                     <p style={{
                       fontSize: '12px',
                       lineHeight: 1.7,
@@ -1820,7 +2388,6 @@ export default function App() {
                       Discover India's most advanced multi-brand electric scooters, swappable Lithium battery networks, and certified rider protection. Unmatched range, zero emissions.
                     </p>
 
-                    {/* Primary Dark Pill Button with Arrow */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                       <button 
                         onClick={() => openCategory('High-Speed EV')}
@@ -1879,7 +2446,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Floating "Scroll Down" Indicator (Right side) */}
                   <div style={{
                     position: 'absolute',
                     bottom: '36px',
@@ -1914,7 +2480,7 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Floating Modular "Find My EV" Pill Widget (Roamora Style) */}
+                {/* Floating "Find My EV" Search Bar Widget */}
                 <div style={{
                   position: 'relative',
                   marginTop: '-38px',
@@ -1936,7 +2502,6 @@ export default function App() {
                     width: '100%',
                     backdropFilter: 'blur(10px)'
                   }}>
-                    {/* Field 1: Scooter Type */}
                     <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <span style={{ fontSize: '16px' }}>⚡</span>
                       <div>
@@ -1954,7 +2519,6 @@ export default function App() {
 
                     <div style={{ width: '1px', height: '30px', backgroundColor: themeStyles.border }} />
 
-                    {/* Field 2: Target Range */}
                     <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <span style={{ fontSize: '16px' }}>📍</span>
                       <div>
@@ -1973,7 +2537,6 @@ export default function App() {
 
                     <div style={{ width: '1px', height: '30px', backgroundColor: themeStyles.border }} />
 
-                    {/* Field 3: City / State */}
                     <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <span style={{ fontSize: '16px' }}>🇮🇳</span>
                       <div>
@@ -1994,7 +2557,6 @@ export default function App() {
 
                     <div style={{ width: '1px', height: '30px', backgroundColor: themeStyles.border }} />
 
-                    {/* Field 4: Ownership */}
                     <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <span style={{ fontSize: '16px' }}>🛡️</span>
                       <div>
@@ -2003,7 +2565,6 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Action Search Button */}
                     <button 
                       onClick={() => openCategory('EV-Scooters')}
                       style={{
@@ -2028,7 +2589,7 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* 4-Item Value Proposition Bar (Matching Roamora Layout) */}
+                {/* 4-Item Value Proposition Bar */}
                 <div style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(4, 1fr)',
@@ -2038,26 +2599,10 @@ export default function App() {
                   margin: '0 auto'
                 }}>
                   {[
-                    {
-                      icon: "🛵",
-                      title: "Certified Multi-Brand Fleet",
-                      desc: "Top models from Ather, Ola, TVS, Chetak, and Simple."
-                    },
-                    {
-                      icon: "🔋",
-                      title: "AIS-156 Smart Battery Cells",
-                      desc: "Active CAN-BMS thermal protection tested for Indian climate."
-                    },
-                    {
-                      icon: "🏷️",
-                      title: "FAME-II Best Price Direct",
-                      desc: "Direct government EV subsidies and upfront RTO assistance."
-                    },
-                    {
-                      icon: "🛠️",
-                      title: "24/7 Roadside Assistance",
-                      desc: "Doorstep test rides, battery swapping, and genuine parts."
-                    }
+                    { icon: "🛵", title: "Certified Multi-Brand Fleet", desc: "Top models from Ather, Ola, TVS, Chetak, and Simple." },
+                    { icon: "🔋", title: "AIS-156 Smart Battery Cells", desc: "Active CAN-BMS thermal protection tested for Indian climate." },
+                    { icon: "🏷️", title: "FAME-II Best Price Direct", desc: "Direct government EV subsidies and upfront RTO assistance." },
+                    { icon: "🛠️", title: "24/7 Roadside Assistance", desc: "Doorstep test rides, battery swapping, and genuine parts." }
                   ].map((item, idx) => (
                     <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                       <div style={{
@@ -2170,99 +2715,6 @@ export default function App() {
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: `1px solid ${themeStyles.border}`, paddingTop: '10px' }}>
                           <div style={{ fontSize: '16px', fontWeight: '900' }}>₹{item.price.toLocaleString('en-IN')}</div>
                           <span style={{ backgroundColor: isDark ? '#ffffff' : '#18181b', color: isDark ? '#18181b' : '#ffffff', borderRadius: '9999px', padding: '6px 12px', fontSize: '10.5px', fontWeight: '700' }}>View</span>
-                        </div>
-                      </div>
-                    </Reveal>
-                  ))}
-                </div>
-              </section>
-            </Reveal>
-
-            {/* ================= 5. EV-SCOOTERS FLEET ================= */}
-            <Reveal direction="up">
-              <section id="ev-catalog" style={{ maxWidth: '1380px', margin: '0 auto', padding: '10px 20px 50px 20px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                  <div>
-                    <h2 style={{ fontSize: '20px', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '-0.4px', margin: 0 }}>
-                      EV-SCOOTERS FLEET
-                    </h2>
-                    <p style={{ fontSize: '11px', color: themeStyles.subtext, margin: '2px 0 0 0' }}>Choose between high-speed performance highway commuters and low-speed non-RTO runabouts.</p>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '6px', backgroundColor: themeStyles.pillBg, padding: '4px', borderRadius: '9999px', border: `1px solid ${themeStyles.border}` }}>
-                    <button 
-                      onClick={() => setEvTab('High-Speed')}
-                      style={{
-                        backgroundColor: evTab === 'High-Speed' ? (isDark ? '#fff' : '#18181b') : 'transparent',
-                        color: evTab === 'High-Speed' ? (isDark ? '#18181b' : '#fff') : themeStyles.text,
-                        border: 'none',
-                        borderRadius: '9999px',
-                        padding: '6px 16px',
-                        fontSize: '11px',
-                        fontWeight: '700',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      High Speed EV Scooter
-                    </button>
-                    <button 
-                      onClick={() => setEvTab('Low-Speed')}
-                      style={{
-                        backgroundColor: evTab === 'Low-Speed' ? (isDark ? '#fff' : '#18181b') : 'transparent',
-                        color: evTab === 'Low-Speed' ? (isDark ? '#18181b' : '#fff') : themeStyles.text,
-                        border: 'none',
-                        borderRadius: '9999px',
-                        padding: '6px 16px',
-                        fontSize: '11px',
-                        fontWeight: '700',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      Slow EV Scooter (Non-RTO)
-                    </button>
-                  </div>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
-                  {categorizedScooters[evTab].map((scooter, idx) => (
-                    <Reveal key={scooter.id} delay={idx * 75} direction="up">
-                      <div 
-                        onClick={() => openProduct(scooter)}
-                        style={{
-                          backgroundColor: themeStyles.cardBg,
-                          borderRadius: '20px',
-                          padding: '16px',
-                          border: `1px solid ${themeStyles.border}`,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'space-between',
-                          height: '100%',
-                          cursor: 'pointer'
-                        }}
-                      >
-                        <div>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                            <span style={{ fontSize: '8.5px', fontWeight: '800', padding: '2px 7px', borderRadius: '4px', backgroundColor: themeStyles.pillBg, color: themeStyles.text }}>
-                              {scooter.badge}
-                            </span>
-                            <button onClick={(e) => { e.stopPropagation(); toggleFav(scooter.id); }} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-                              <Icons.Heart active={favorites.includes(scooter.id)} />
-                            </button>
-                          </div>
-                          <div style={{ height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '10px' }}>
-                            <img src={scooter.img} alt={scooter.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                          </div>
-                          <h3 style={{ fontSize: '13px', fontWeight: '800', margin: '0 0 2px 0' }}>{scooter.name}</h3>
-                          <div style={{ fontSize: '10px', color: themeStyles.subtext, marginBottom: '6px' }}>{scooter.brand}</div>
-                          <div style={{ fontSize: '10px', color: themeStyles.subtext, marginBottom: '14px' }}>{scooter.specs}</div>
-                        </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: `1px solid ${themeStyles.border}`, paddingTop: '10px' }}>
-                          <span style={{ fontSize: '15px', fontWeight: '900' }}>₹{scooter.price.toLocaleString('en-IN')}</span>
-                          <span 
-                            style={{ backgroundColor: isDark ? '#fff' : '#18181b', color: isDark ? '#18181b' : '#fff', borderRadius: '9999px', padding: '6px 12px', fontSize: '10.5px', fontWeight: '700' }}
-                          >
-                            View Details
-                          </span>
                         </div>
                       </div>
                     </Reveal>
