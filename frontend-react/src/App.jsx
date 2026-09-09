@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 
 // ================= INTRO ANIMATION PRELOADER (WITH SVG ICONS) =================
 function IntroLoader({ onComplete }) {
-  // Stages: 0: Scooter Icon, 1: Apparel Icon, 2: Battery Icon, 3: GBGX Logo Zoom, 4: Finished
   const [stage, setStage] = useState(0);
   const [fadeOut, setFadeOut] = useState(false);
 
@@ -22,7 +21,6 @@ function IntroLoader({ onComplete }) {
     };
   }, [onComplete]);
 
-  // Preloader Vector Icons
   const LoaderIcons = {
     Scooter: () => (
       <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -44,178 +42,42 @@ function IntroLoader({ onComplete }) {
   };
 
   const stagesData = [
-    {
-      label: "INITIALIZING EV COMMUTE",
-      sub: "Aero-Step Electric Dynamics",
-      icon: <LoaderIcons.Scooter />,
-      accent: "#10b981"
-    },
-    {
-      label: "SYNCING RIDER SAFETY GEAR",
-      sub: "CE Level 2 Certified Armor",
-      icon: <LoaderIcons.Apparel />,
-      accent: "#f59e0b"
-    },
-    {
-      label: "CHARGING AIS-156 POWER CELL",
-      sub: "Smart CAN-BMS 72V Architecture",
-      icon: <LoaderIcons.Battery />,
-      accent: "#3b82f6"
-    }
+    { label: "INITIALIZING EV COMMUTE", sub: "Aero-Step Electric Dynamics", icon: <LoaderIcons.Scooter />, accent: "#10b981" },
+    { label: "SYNCING RIDER SAFETY GEAR", sub: "CE Level 2 Certified Armor", icon: <LoaderIcons.Apparel />, accent: "#f59e0b" },
+    { label: "CHARGING AIS-156 POWER CELL", sub: "Smart CAN-BMS 72V Architecture", icon: <LoaderIcons.Battery />, accent: "#3b82f6" }
   ];
 
   return (
     <div style={{
-      position: 'fixed',
-      inset: 0,
-      backgroundColor: '#09090b',
-      zIndex: 9999,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      overflow: 'hidden',
-      opacity: fadeOut ? 0 : 1,
-      transform: fadeOut ? 'scale(1.04)' : 'scale(1)',
+      position: 'fixed', inset: 0, backgroundColor: '#09090b', zIndex: 9999,
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      overflow: 'hidden', opacity: fadeOut ? 0 : 1, transform: fadeOut ? 'scale(1.04)' : 'scale(1)',
       transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
     }}>
-      {/* Background Radial Ambient Glow */}
       <div style={{
-        position: 'absolute',
-        width: '500px',
-        height: '500px',
-        borderRadius: '50%',
-        background: stage === 3 
-          ? 'radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0) 70%)'
-          : `radial-gradient(circle, ${stagesData[stage]?.accent}26 0%, rgba(0,0,0,0) 70%)`,
-        filter: 'blur(50px)',
-        transition: 'background 0.5s ease'
+        position: 'absolute', width: '500px', height: '500px', borderRadius: '50%',
+        background: stage === 3 ? 'radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0) 70%)' : `radial-gradient(circle, ${stagesData[stage]?.accent}26 0%, rgba(0,0,0,0) 70%)`,
+        filter: 'blur(50px)', transition: 'background 0.5s ease'
       }} />
-
-      {/* STAGE 0, 1, 2: ICON ROTATION SHOWCASE */}
       {stage < 3 && (
-        <div style={{
-          position: 'relative',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 2
-        }}>
-          {/* Rotating Ring Hologram */}
-          <div style={{
-            position: 'absolute',
-            width: '200px',
-            height: '200px',
-            borderRadius: '50%',
-            border: `2px dashed ${stagesData[stage].accent}55`,
-            animation: 'gbgxRotate3D 4s linear infinite',
-            pointerEvents: 'none'
-          }} />
-
-          {/* Icon Container with Floating Pulse */}
-          <div style={{
-            width: '140px',
-            height: '140px',
-            borderRadius: '32px',
-            backgroundColor: '#121215',
-            border: `1px solid ${stagesData[stage].accent}44`,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: `0 0 30px ${stagesData[stage].accent}22`,
-            animation: 'gbgxRotate3D 2.4s ease-in-out infinite alternate',
-            filter: 'drop-shadow(0 15px 30px rgba(0,0,0,0.6))'
-          }}>
+        <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
+          <div style={{ position: 'absolute', width: '200px', height: '200px', borderRadius: '50%', border: `2px dashed ${stagesData[stage].accent}55`, animation: 'gbgxRotate3D 4s linear infinite', pointerEvents: 'none' }} />
+          <div style={{ width: '140px', height: '140px', borderRadius: '32px', backgroundColor: '#121215', border: `1px solid ${stagesData[stage].accent}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 30px ${stagesData[stage].accent}22`, filter: 'drop-shadow(0 15px 30px rgba(0,0,0,0.6))' }}>
             {stagesData[stage].icon}
           </div>
-
-          {/* Dynamic Label & Progress Indicator */}
           <div style={{ textAlign: 'center', marginTop: '35px' }}>
-            <div style={{
-              fontSize: '11px',
-              fontWeight: '900',
-              letterSpacing: '2px',
-              color: stagesData[stage].accent,
-              textTransform: 'uppercase',
-              marginBottom: '4px'
-            }}>
-              {stagesData[stage].label}
-            </div>
-            <div style={{ fontSize: '9px', color: '#71717a', letterSpacing: '0.8px' }}>
-              {stagesData[stage].sub}
-            </div>
-
-            {/* Stepper Dots */}
-            <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', marginTop: '16px' }}>
-              {[0, 1, 2].map(i => (
-                <div key={i} style={{
-                  width: stage === i ? '20px' : '6px',
-                  height: '4px',
-                  borderRadius: '2px',
-                  backgroundColor: stage === i ? stagesData[stage].accent : '#27272a',
-                  transition: 'all 0.3s ease'
-                }} />
-              ))}
-            </div>
+            <div style={{ fontSize: '11px', fontWeight: '900', letterSpacing: '2px', color: stagesData[stage].accent, textTransform: 'uppercase', marginBottom: '4px' }}>{stagesData[stage].label}</div>
+            <div style={{ fontSize: '9px', color: '#71717a', letterSpacing: '0.8px' }}>{stagesData[stage].sub}</div>
           </div>
         </div>
       )}
-
-      {/* STAGE 3: GBGX LOGO ZOOM FINALE */}
       {stage === 3 && (
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 2,
-          animation: 'gbgxZoomIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards'
-        }}>
-          <img 
-            src="/GBGX_logo_black_transparent.png" 
-            alt="GBGX Logo"
-            style={{
-              height: '48px',
-              width: 'auto',
-              filter: 'invert(1) drop-shadow(0 0 25px rgba(255,255,255,0.4))',
-              display: 'block',
-              marginBottom: '16px'
-            }}
-          />
-          <div style={{
-            fontSize: '9.5px',
-            fontWeight: '800',
-            letterSpacing: '3px',
-            color: '#a1a1aa',
-            textTransform: 'uppercase'
-          }}>
-            BHARAT ELECTRIC MOBILITY
-          </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
+          <img src="/GBGX_logo_black_transparent.png" alt="GBGX Logo" style={{ height: '48px', width: 'auto', filter: 'invert(1) drop-shadow(0 0 25px rgba(255,255,255,0.4))', display: 'block', marginBottom: '16px' }} />
+          <div style={{ fontSize: '9.5px', fontWeight: '800', letterSpacing: '3px', color: '#a1a1aa', textTransform: 'uppercase' }}>BHARAT ELECTRIC MOBILITY</div>
         </div>
       )}
-
-      {/* Skip Button */}
-      <button 
-        onClick={onComplete}
-        style={{
-          position: 'absolute',
-          bottom: '24px',
-          right: '24px',
-          background: 'none',
-          border: '1px solid #27272a',
-          color: '#71717a',
-          padding: '6px 14px',
-          borderRadius: '9999px',
-          fontSize: '9px',
-          fontWeight: '700',
-          cursor: 'pointer',
-          zIndex: 10,
-          letterSpacing: '1px'
-        }}
-      >
-        SKIP INTRO →
-      </button>
+      <button onClick={onComplete} style={{ position: 'absolute', bottom: '24px', right: '24px', background: 'none', border: '1px solid #27272a', color: '#71717a', padding: '6px 14px', borderRadius: '9999px', fontSize: '9px', fontWeight: '700', cursor: 'pointer', zIndex: 10, letterSpacing: '1px' }}>SKIP INTRO →</button>
     </div>
   );
 }
@@ -235,17 +97,11 @@ function Reveal({ children, delay = 0, direction = 'up', style = {}, className =
           }
         });
       },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
     );
-
-    const currentElem = domRef.current;
-    if (currentElem) {
-      observer.observe(currentElem);
-    }
-
-    return () => {
-      if (currentElem) observer.unobserve(currentElem);
-    };
+    const elem = domRef.current;
+    if (elem) observer.observe(elem);
+    return () => { if (elem) observer.unobserve(elem); };
   }, []);
 
   const getTransform = () => {
@@ -261,35 +117,19 @@ function Reveal({ children, delay = 0, direction = 'up', style = {}, className =
   };
 
   return (
-    <div
-      ref={domRef}
-      className={className}
-      style={{
-        ...style,
-        opacity: isVisible ? 1 : 0,
-        transform: getTransform(),
-        transition: `opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-        willChange: 'opacity, transform'
-      }}
-    >
+    <div ref={domRef} className={className} style={{ ...style, opacity: isVisible ? 1 : 0, transform: getTransform(), transition: `opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`, willChange: 'opacity, transform' }}>
       {children}
     </div>
   );
 }
 
 // ================= ATTRIBUTE-BASED COSINE SIMILARITY ENGINE =================
-// Computes genuine TF-IDF cosine similarity across color, features, and compatibility
 function tokenizeAndVectorizeAttributes(product) {
-  // Synthesize weighted attribute tokens emphasizing color, features, and compatibility
   const attributeCorpus = [
-    product.color || '',
-    product.color || '', // 2x weight on color matching
+    product.color || '', product.color || '',
     product.features || '',
-    product.compatibility || '',
-    product.compatibility || '', // 2x weight on ecosystem compatibility
-    product.specs || '',
-    product.brand || '',
-    product.description || ''
+    product.compatibility || '', product.compatibility || '',
+    product.specs || '', product.brand || '', product.description || ''
   ].join(' ').toLowerCase();
 
   const tokens = attributeCorpus.match(/\b[a-z0-9_-]+\b/g) || [];
@@ -319,141 +159,39 @@ function calculateAttributeCosineSimilarity(productA, productB) {
     normB += valB * valB;
   });
 
-  if (normA === 0 || normB === 0) return 0.5; // Baseline compatibility score
-  const similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
-  return similarity;
+  if (normA === 0 || normB === 0) return 0.5;
+  return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
 }
 
 // Precision SVGs
 const Icons = {
-  Search: () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-  ),
-  Mic: ({ listening }) => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill={listening ? "#ef4444" : "none"} stroke={listening ? "#ef4444" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
-      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-      <line x1="12" x2="12" y1="19" y2="22"/>
-    </svg>
-  ),
-  User: () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
-  ),
-  Sun: () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-  ),
-  Moon: () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-  ),
-  Heart: ({ active }) => (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill={active ? "#e11d48" : "none"} stroke={active ? "#e11d48" : "currentColor"} strokeWidth="1.8"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-  ),
-  Bag: () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-  ),
-  Play: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-  ),
-  Star: () => (
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-  ),
-  Truck: () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><rect width="14" height="10" x="1" y="5" rx="2"/><path d="M15 10h4l3 3v2h-7v-5z"/><circle cx="5.5" cy="17.5" r="2.5"/><circle cx="18.5" cy="17.5" r="2.5"/></svg>
-  ),
-  Zap: () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-  ),
-  Shield: () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-  ),
-  ArrowRight: () => (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  ),
-  ArrowLeft: () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
-  ),
-  Instagram: () => (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-    </svg>
-  ),
-  Facebook: () => (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-    </svg>
-  ),
-  YouTube: () => (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
-      <polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/>
-    </svg>
-  ),
-  LinkedIn: () => (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-      <rect width="4" height="12" x="2" y="9"/>
-      <circle cx="4" cy="4" r="2"/>
-    </svg>
-  ),
-  TwitterX: () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
-  ),
-  AtherLogo: () => (
-    <svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor">
-      <path d="M50 5 L90 85 L72 85 L50 40 L28 85 L10 85 Z" />
-      <polygon points="50,55 60,78 40,78" fill="#10b981" />
-    </svg>
-  ),
-  OlaLogo: () => (
-    <svg width="24" height="20" viewBox="0 0 100 80" fill="currentColor">
-      <ellipse cx="50" cy="40" rx="36" ry="24" fill="none" stroke="currentColor" strokeWidth="12" />
-      <circle cx="50" cy="40" r="10" fill="#10b981" />
-    </svg>
-  ),
-  TVSLogo: () => (
-    <svg width="32" height="18" viewBox="0 0 100 60" fill="currentColor">
-      <path d="M5 10 L40 10 L25 50 L10 50 Z" />
-      <path d="M45 10 L65 42 L85 10 L98 10 L75 50 L55 50 L35 18 Z" />
-      <polygon points="85,38 98,38 94,50 81,50" fill="#ef4444" />
-    </svg>
-  ),
-  ChetakLogo: () => (
-    <svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor">
-      <path d="M20 75 C 20 40, 50 15, 80 15 C 65 35, 65 60, 80 75 C 55 62, 35 62, 20 75 Z" />
-      <circle cx="58" cy="42" r="7" fill="#3b82f6" />
-    </svg>
-  ),
-  HeroEVLogo: () => (
-    <svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor">
-      <polygon points="20,80 50,20 80,80" fill="none" stroke="currentColor" strokeWidth="14" strokeLinejoin="round" />
-      <polygon points="38,72 50,48 62,72" fill="#ef4444" />
-    </svg>
-  ),
-  OkinawaLogo: () => (
-    <svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor">
-      <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" strokeWidth="12" />
-      <path d="M25 50 L50 25 L75 50 L50 75 Z" fill="#ef4444" />
-    </svg>
-  ),
-  SimpleLogo: () => (
-    <svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor">
-      <path d="M20 30 C 35 15, 65 15, 80 30 L 65 45 C 55 35, 45 35, 35 45 L 80 65 C 65 85, 35 85, 20 70 L 35 55 C 45 65, 55 65, 65 55 Z" />
-    </svg>
-  ),
-  PureEVLogo: () => (
-    <svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor">
-      <rect x="20" y="20" width="60" height="60" rx="14" fill="none" stroke="currentColor" strokeWidth="12" />
-      <path d="M52 10 L36 50 L50 50 L44 90 L68 45 L52 45 Z" fill="#3b82f6" />
-    </svg>
-  )
+  Search: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>),
+  Mic: ({ listening }) => (<svg width="14" height="14" viewBox="0 0 24 24" fill={listening ? "#ef4444" : "none"} stroke={listening ? "#ef4444" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>),
+  User: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>),
+  Sun: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>),
+  Moon: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>),
+  Heart: ({ active }) => (<svg width="15" height="15" viewBox="0 0 24 24" fill={active ? "#e11d48" : "none"} stroke={active ? "#e11d48" : "currentColor"} strokeWidth="1.8"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>),
+  Bag: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>),
+  Play: () => (<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>),
+  Star: () => (<svg width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>),
+  Truck: () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><rect width="14" height="10" x="1" y="5" rx="2"/><path d="M15 10h4l3 3v2h-7v-5z"/><circle cx="5.5" cy="17.5" r="2.5"/><circle cx="18.5" cy="17.5" r="2.5"/></svg>),
+  Zap: () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>),
+  Shield: () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>),
+  ArrowRight: () => (<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>),
+  ArrowLeft: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>),
+  Close: () => (<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>),
+  Instagram: () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>),
+  Facebook: () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>),
+  YouTube: () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/></svg>),
+  LinkedIn: () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>),
+  TwitterX: () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>),
+  AtherLogo: () => (<svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor"><path d="M50 5 L90 85 L72 85 L50 40 L28 85 L10 85 Z" /><polygon points="50,55 60,78 40,78" fill="#10b981" /></svg>),
+  OlaLogo: () => (<svg width="24" height="20" viewBox="0 0 100 80" fill="currentColor"><ellipse cx="50" cy="40" rx="36" ry="24" fill="none" stroke="currentColor" strokeWidth="12" /><circle cx="50" cy="40" r="10" fill="#10b981" /></svg>),
+  TVSLogo: () => (<svg width="32" height="18" viewBox="0 0 100 60" fill="currentColor"><path d="M5 10 L40 10 L25 50 L10 50 Z" /><path d="M45 10 L65 42 L85 10 L98 10 L75 50 L55 50 L35 18 Z" /><polygon points="85,38 98,38 94,50 81,50" fill="#ef4444" /></svg>),
+  ChetakLogo: () => (<svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor"><path d="M20 75 C 20 40, 50 15, 80 15 C 65 35, 65 60, 80 75 C 55 62, 35 62, 20 75 Z" /><circle cx="58" cy="42" r="7" fill="#3b82f6" /></svg>)
 };
 
 // ================= MASTER PRODUCT CATALOG WITH ATTRIBUTES =================
-// Attribute definitions: colour, features, compatibility used for Cosine Similarity
 const MASTER_PRODUCTS = [
   // High-Speed EV Scooters
   {
@@ -617,22 +355,6 @@ const MASTER_PRODUCTS = [
     specs: "ECE 22.06 & DOT • Pinlock 30 Max",
     description: "ECE certified aerodynamic performance helmet with rear spoiler, emergency cheek pad release, and optical grade visor.",
     img: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=500&q=80"
-  },
-  {
-    id: 303,
-    name: "Vega Bolt Bunny Black Helmet",
-    brand: "Vega",
-    category: "Accessories",
-    subCategory: "Helmet",
-    price: 2199,
-    rating: 4.6,
-    reviewsCount: 420,
-    color: "Glossy Black / Cyan Accents",
-    features: "Aerodynamic Shell, Removable Washable Padding, Scratch Resistant Visor, ISI Certified",
-    compatibility: "City Commuter EVs, Hero Eddy, Okinawa Lite, Probiker Gloves",
-    specs: "Aerodynamic Shell • Removable Padding",
-    description: "Lightweight commuter helmet with scratch-resistant coated visor and high-impact virgin ABS material.",
-    img: "https://images.unsplash.com/photo-1578874691223-a49626e80062?auto=format&fit=crop&w=500&q=80"
   },
 
   // Accessories - Jackets
@@ -883,24 +605,32 @@ const MASTER_PRODUCTS = [
 ];
 
 export default function App() {
-  // Intro Loading State
   const [loadingIntro, setLoadingIntro] = useState(true);
-
-  // Navigation & Preferences State - DEFAULT TO DARK
   const [lang, setLang] = useState('EN');
   const [theme, setTheme] = useState('dark');
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [hoveredNav, setHoveredNav] = useState(null);
+
+  // Search Engine & Controls
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [recentSearches, setRecentSearches] = useState(['Ather 450X', '72V Battery', 'DOT Helmet', 'Ola S1']);
+  const [searchCategoryFilter, setSearchCategoryFilter] = useState('All');
   const [isListening, setIsListening] = useState(false);
+  const searchContainerRef = useRef(null);
+
+  // Floating Hero Filter Widget State
+  const [heroSearchRange, setHeroSearchRange] = useState('All');
+  const [heroSearchCity, setHeroSearchCity] = useState('All');
+
   const [favorites, setFavorites] = useState([1, 4]);
   const [cartCount, setCartCount] = useState(2);
   const [wishlistCount, setWishlistCount] = useState(4);
 
-  // Router State: { page: 'home' | 'category' | 'product', categoryName?: string, product?: object }
+  // Router State: { page: 'home' | 'category' | 'product' | 'search', categoryName?: string, product?: object, searchQuery?: string }
   const [router, setRouter] = useState({ page: 'home' });
 
-  // Filter States on Home Page
+  // Home Page Sub-category states
   const [evTab, setEvTab] = useState('High-Speed');
   const [accessoryTab, setAccessoryTab] = useState('Helmets');
   const [partnerType, setPartnerType] = useState('Dealership');
@@ -911,12 +641,25 @@ export default function App() {
   const [partnerForm, setPartnerForm] = useState({ name: '', phone: '', city: '', note: '' });
   const [partnerSubmitted, setPartnerSubmitted] = useState(false);
 
-  // Dynamic Browser title and favicon
+  // Click outside to dismiss autocomplete search dropdown
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+        setIsSearchFocused(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Set browser title and tab favicon
   useEffect(() => {
     if (router.page === 'product' && router.product) {
       document.title = `${router.product.name} | GBGX Electric Mobility`;
     } else if (router.page === 'category') {
       document.title = `${router.categoryName} Catalog | GBGX`;
+    } else if (router.page === 'search') {
+      document.title = `Search: "${router.searchQuery}" | GBGX`;
     } else {
       document.title = "GBGX | Electric Mobility & EV Scooters India";
     }
@@ -934,7 +677,23 @@ export default function App() {
     setFavorites(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   };
 
-  // Voice Search Handler
+  const executeSearch = (queryOverride) => {
+    const queryToSearch = (queryOverride !== undefined ? queryOverride : searchQuery).trim();
+    if (!queryToSearch) return;
+
+    setSearchQuery(queryToSearch);
+    setIsSearchFocused(false);
+
+    setRecentSearches(prev => [
+      queryToSearch,
+      ...prev.filter(item => item.toLowerCase() !== queryToSearch.toLowerCase())
+    ].slice(0, 5));
+
+    setSearchCategoryFilter('All');
+    setRouter({ page: 'search', searchQuery: queryToSearch });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleVoiceSearch = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
@@ -946,7 +705,11 @@ export default function App() {
     recognition.onstart = () => setIsListening(true);
     recognition.onend = () => setIsListening(false);
     recognition.onerror = () => setIsListening(false);
-    recognition.onresult = (e) => setSearchQuery(e.results[0][0].transcript);
+    recognition.onresult = (e) => {
+      const transcript = e.results[0][0].transcript;
+      setSearchQuery(transcript);
+      executeSearch(transcript);
+    };
     recognition.start();
   };
 
@@ -963,56 +726,40 @@ export default function App() {
     heroBg: isDark ? '#21201d' : '#e6e2db'
   };
 
-  // Bilingual Dictionary
   const t = {
     EN: {
-      scooters: "EV-Scooters",
-      accessories: "Accessories",
-      batteries: "Batteries",
-      spareParts: "Spare Parts",
-      partner: "Become a Partner",
-      searchPlaceholder: "Search EV, batteries, helmets, parts...",
-      account: "Account",
-      highSpeed: "High Speed EV Scooter",
-      slowSpeed: "Slow EV Scooter (Non-RTO)",
-      compare: "Compare Models",
-      testRide: "Book a Test Ride",
-      helmets: "Helmets",
-      jackets: "Riding Jackets",
-      gloves: "Riding Gloves",
-      phoneHolders: "Phone Holders",
+      scooters: "EV-Scooters", accessories: "Accessories", batteries: "Batteries", spareParts: "Spare Parts", partner: "Become a Partner",
+      searchPlaceholder: "Search EV, batteries, helmets, parts...", account: "Account",
+      highSpeed: "High Speed EV Scooter", slowSpeed: "Slow EV Scooter (Non-RTO)", compare: "Compare Models", testRide: "Book a Test Ride",
+      helmets: "Helmets", jackets: "Riding Jackets", gloves: "Riding Gloves", phoneHolders: "Phone Holders"
     },
     HI: {
-      scooters: "ईवी-स्कूटर",
-      accessories: "एक्सेसरीज",
-      batteries: "बैटरी",
-      spareParts: "स्पेयर पार्ट्स",
-      partner: "पार्टनर बनें",
-      searchPlaceholder: "ईवी, बैटरी, पार्ट्स खोजें...",
-      account: "अकाउंट",
-      highSpeed: "हाई-स्पीड ईवी स्कूटर",
-      slowSpeed: "धीमी गति ईवी (बिना लाइसेंस)",
-      compare: "मॉडल तुलना",
-      testRide: "टेस्ट राइड बुक करें",
-      helmets: "हेलमेट",
-      jackets: "राइडिंग जैकेट",
-      gloves: "राइडिंग ग्लव्स",
-      phoneHolders: "मोबाइल होल्डर",
+      scooters: "ईवी-स्कूटर", accessories: "एक्सेसरीज", batteries: "बैटरी", spareParts: "स्पेयर पार्ट्स", partner: "पार्टनर बनें",
+      searchPlaceholder: "ईवी, बैटरी, पार्ट्स खोजें...", account: "अकाउंट",
+      highSpeed: "हाई-स्पीड ईवी स्कूटर", slowSpeed: "धीमी गति ईवी", compare: "मॉडल तुलना", testRide: "टेस्ट राइड बुक करें",
+      helmets: "हेलमेट", jackets: "जैकेट", gloves: "ग्लव्स", phoneHolders: "मोबाइल होल्डर"
     }
   }[lang];
 
-  // Navigation router actions
   const openProduct = (prod) => {
+    setIsSearchFocused(false);
     setRouter({ page: 'product', product: prod });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const openCategory = (catName) => {
+    setIsSearchFocused(false);
     setRouter({ page: 'category', categoryName: catName });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Static collections for Home Page
+  const liveMatches = searchQuery.trim()
+    ? MASTER_PRODUCTS.filter(p => {
+        const fullText = `${p.name} ${p.brand} ${p.category} ${p.subCategory || ''} ${p.specs} ${p.color || ''} ${p.features || ''} ${p.compatibility || ''}`.toLowerCase();
+        return fullText.includes(searchQuery.toLowerCase());
+      })
+    : [];
+
   const topSellingScooters = MASTER_PRODUCTS.filter(p => p.category === 'EV-Scooters').slice(0, 4);
   const categorizedScooters = {
     'High-Speed': MASTER_PRODUCTS.filter(p => p.category === 'EV-Scooters' && p.type === 'High-Speed'),
@@ -1027,7 +774,6 @@ export default function App() {
   const horizontalBatteries = MASTER_PRODUCTS.filter(p => p.category === 'Batteries');
   const horizontalSpareParts = MASTER_PRODUCTS.filter(p => p.category === 'Spare Parts');
 
-  // Video Shorts & Testimonials
   const rideShorts = [
     { id: 1, title: "0-60 km/h Warp Test: Ather 450X", views: "142K views", duration: "0:42", thumbnail: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80" },
     { id: 2, title: "Bangalore to Nandi Hills on Ola S1 Pro", views: "98K views", duration: "0:58", thumbnail: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=400&q=80" },
@@ -1036,32 +782,14 @@ export default function App() {
   ];
 
   const reviews = [
-    {
-      name: "Siddharth Verma",
-      location: "Indiranagar, Bengaluru",
-      scooter: "Ather 450X Owner",
-      text: "Booking via GBGX was seamless. The scooter was home-delivered with permanent RTO registration in 48 hours. Best EV marketplace in India!",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
-    },
-    {
-      name: "Pooja Deshmukh",
-      location: "Kothrud, Pune",
-      scooter: "Okinawa Lite User",
-      text: "I bought a low-speed scooter for my father without any driving test or license hassle. GBGX even sent an engineer for a free doorstep demo.",
-      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
-    },
-    {
-      name: "Vikramjit Singh",
-      location: "Sector 62, Noida",
-      scooter: "72V Pack & Rynox Gear",
-      text: "Upgraded my retrofitted EV with the GBGX 72V 40Ah battery. Getting an honest 110 km real range in extreme North Indian heat. Outstanding quality!",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
-    }
+    { name: "Siddharth Verma", location: "Indiranagar, Bengaluru", scooter: "Ather 450X Owner", text: "Booking via GBGX was seamless. The scooter was home-delivered with permanent RTO registration in 48 hours. Best EV marketplace in India!", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" },
+    { name: "Pooja Deshmukh", location: "Kothrud, Pune", scooter: "Okinawa Lite User", text: "I bought a low-speed scooter for my father without any driving test or license hassle. GBGX even sent an engineer for a free doorstep demo.", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" },
+    { name: "Vikramjit Singh", location: "Sector 62, Noida", scooter: "72V Pack & Rynox Gear", text: "Upgraded my retrofitted EV with the GBGX 72V 40Ah battery. Getting an honest 110 km real range in extreme North Indian heat. Outstanding quality!", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80" }
   ];
 
   return (
     <>
-      {/* ================= INTRO ANIMATION PRELOADER (WITH ICONS) ================= */}
+      {/* ================= INTRO ANIMATION PRELOADER ================= */}
       {loadingIntro && <IntroLoader onComplete={() => setLoadingIntro(false)} />}
 
       <div style={{ backgroundColor: themeStyles.bg, color: themeStyles.text, minHeight: '100vh', width: '100%', overflowX: 'hidden', transition: 'background-color 0.25s ease, color 0.25s ease' }}>
@@ -1079,7 +807,7 @@ export default function App() {
           position: 'relative',
           zIndex: 100
         }}>
-          {/* Logo (Direct link to Home) */}
+          {/* Logo */}
           <div onClick={() => setRouter({ page: 'home' })} style={{ display: 'flex', alignItems: 'center', flexShrink: 0, cursor: 'pointer' }}>
             <img 
               src="/GBGX_logo_black_transparent.png" 
@@ -1093,10 +821,8 @@ export default function App() {
             />
           </div>
 
-          {/* Dropdown Navigation Menu */}
+          {/* Navigation Dropdown Menus */}
           <nav style={{ display: 'flex', alignItems: 'center', gap: '22px', fontSize: '11.5px', fontWeight: '600', position: 'relative' }}>
-            
-            {/* EV-Scooters Dropdown */}
             <div 
               onMouseEnter={() => setHoveredNav('scooters')}
               onMouseLeave={() => setHoveredNav(null)}
@@ -1133,7 +859,7 @@ export default function App() {
                       cursor: 'pointer',
                       color: themeStyles.text
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f5'}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f6'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                     >
                       <div style={{ fontSize: '12px', fontWeight: '700' }}>{item.name}</div>
@@ -1144,7 +870,6 @@ export default function App() {
               )}
             </div>
 
-            {/* Accessories Dropdown */}
             <div 
               onMouseEnter={() => setHoveredNav('accessories')}
               onMouseLeave={() => setHoveredNav(null)}
@@ -1183,7 +908,7 @@ export default function App() {
                       fontSize: '11.5px',
                       fontWeight: '600'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f5'}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f6'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                     >
                       {acc.name}
@@ -1193,12 +918,10 @@ export default function App() {
               )}
             </div>
 
-            {/* Batteries Direct Link */}
             <span onClick={() => openCategory('Batteries')} style={{ color: themeStyles.text, cursor: 'pointer', padding: '6px 0' }}>
               {t.batteries}
             </span>
 
-            {/* Spare Parts Dropdown */}
             <div 
               onMouseEnter={() => setHoveredNav('spare-parts')}
               onMouseLeave={() => setHoveredNav(null)}
@@ -1235,7 +958,7 @@ export default function App() {
                       fontSize: '11px',
                       fontWeight: '600'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f5'}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#f4f4f6'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                     >
                       {brand}
@@ -1246,36 +969,234 @@ export default function App() {
             </div>
           </nav>
 
-          {/* Text & Voice Search Bar */}
-          <div style={{
-            backgroundColor: themeStyles.pillBg,
-            borderRadius: '9999px',
-            padding: '4px 6px 4px 14px',
-            display: 'flex',
-            alignItems: 'center',
-            width: '260px',
-            border: `1px solid ${themeStyles.border}`
-          }}>
-            <input 
-              type="text"
-              placeholder={t.searchPlaceholder}
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              style={{ border: 'none', outline: 'none', fontSize: '11px', color: themeStyles.text, flex: 1, background: 'transparent' }}
-            />
-            <button 
-              onClick={handleVoiceSearch} 
-              title={isListening ? "Listening..." : "Voice Search"}
-              style={{ width: '26px', height: '26px', borderRadius: '50%', backgroundColor: isListening ? '#fee2e2' : 'transparent', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', marginRight: '3px' }}
-            >
-              <Icons.Mic listening={isListening} />
-            </button>
-            <button 
-              onClick={() => openCategory('All')} 
-              style={{ width: '26px', height: '26px', borderRadius: '50%', backgroundColor: isDark ? '#fff' : '#18181b', color: isDark ? '#18181b' : '#fff', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
-            >
-              <Icons.Search />
-            </button>
+          {/* ================= FUNCTIONAL INTERACTIVE SEARCH BAR ================= */}
+          <div ref={searchContainerRef} style={{ position: 'relative' }}>
+            <div style={{
+              backgroundColor: themeStyles.pillBg,
+              borderRadius: '9999px',
+              padding: '4px 6px 4px 14px',
+              display: 'flex',
+              alignItems: 'center',
+              width: isSearchFocused ? '340px' : '270px',
+              border: `1px solid ${isSearchFocused ? '#10b981' : themeStyles.border}`,
+              transition: 'width 0.25s ease, border-color 0.2s ease',
+              boxShadow: isSearchFocused ? '0 0 0 3px rgba(16, 185, 129, 0.15)' : 'none'
+            }}>
+              <input 
+                type="text"
+                placeholder={t.searchPlaceholder}
+                value={searchQuery}
+                onFocus={() => setIsSearchFocused(true)}
+                onChange={e => setSearchQuery(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    executeSearch();
+                  } else if (e.key === 'Escape') {
+                    setIsSearchFocused(false);
+                  }
+                }}
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  fontSize: '11px',
+                  color: themeStyles.text,
+                  flex: 1,
+                  background: 'transparent'
+                }}
+              />
+
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  title="Clear"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: themeStyles.subtext,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: '0 4px'
+                  }}
+                >
+                  <Icons.Close />
+                </button>
+              )}
+
+              <button 
+                onClick={handleVoiceSearch} 
+                title={isListening ? "Listening..." : "Voice Search"}
+                style={{
+                  width: '26px',
+                  height: '26px',
+                  borderRadius: '50%',
+                  backgroundColor: isListening ? '#fee2e2' : 'transparent',
+                  border: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  marginRight: '3px'
+                }}
+              >
+                <Icons.Mic listening={isListening} />
+              </button>
+
+              <button 
+                onClick={() => executeSearch()}
+                title="Search"
+                style={{
+                  width: '26px',
+                  height: '26px',
+                  borderRadius: '50%',
+                  backgroundColor: isDark ? '#fff' : '#18181b',
+                  color: isDark ? '#18181b' : '#fff',
+                  border: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer'
+                }}
+              >
+                <Icons.Search />
+              </button>
+            </div>
+
+            {/* Suggestions & History Dropdown */}
+            {isSearchFocused && (
+              <div style={{
+                position: 'absolute',
+                top: 'calc(100% + 8px)',
+                right: 0,
+                width: '380px',
+                backgroundColor: themeStyles.cardBg,
+                border: `1px solid ${themeStyles.border}`,
+                borderRadius: '18px',
+                boxShadow: '0 16px 40px rgba(0,0,0,0.3)',
+                padding: '16px',
+                zIndex: 1000,
+                backdropFilter: 'blur(10px)'
+              }}>
+                {searchQuery.trim() ? (
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                      <span style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: themeStyles.subtext, letterSpacing: '0.5px' }}>
+                        Matching Products ({liveMatches.length})
+                      </span>
+                      <span 
+                        onClick={() => executeSearch()} 
+                        style={{ fontSize: '10px', color: '#10b981', fontWeight: '700', cursor: 'pointer' }}
+                      >
+                        View all results →
+                      </span>
+                    </div>
+
+                    {liveMatches.length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '280px', overflowY: 'auto' }}>
+                        {liveMatches.slice(0, 4).map(item => (
+                          <div
+                            key={item.id}
+                            onClick={() => openProduct(item)}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '12px',
+                              padding: '8px',
+                              borderRadius: '12px',
+                              cursor: 'pointer',
+                              backgroundColor: themeStyles.pillBg,
+                              transition: 'background-color 0.15s ease'
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.backgroundColor = isDark ? '#2e2e33' : '#e4e4e7'}
+                            onMouseLeave={e => e.currentTarget.style.backgroundColor = themeStyles.pillBg}
+                          >
+                            <img src={item.img} alt={item.name} style={{ width: '40px', height: '40px', objectFit: 'contain', borderRadius: '8px' }} />
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <div style={{ fontSize: '11px', fontWeight: '800', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                {item.name}
+                              </div>
+                              <div style={{ fontSize: '9px', color: themeStyles.subtext }}>
+                                {item.brand} • {item.category}
+                              </div>
+                            </div>
+                            <div style={{ fontSize: '11px', fontWeight: '900', color: '#10b981', flexShrink: 0 }}>
+                              ₹{item.price.toLocaleString('en-IN')}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{ padding: '20px 10px', textAlign: 'center', color: themeStyles.subtext, fontSize: '11px' }}>
+                        No instant matches for "{searchQuery}". Press <strong>Enter</strong> to search all specs.
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div>
+                    {recentSearches.length > 0 && (
+                      <div style={{ marginBottom: '16px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                          <span style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: themeStyles.subtext, letterSpacing: '0.5px' }}>
+                            Recent Searches
+                          </span>
+                          <span 
+                            onClick={() => setRecentSearches([])} 
+                            style={{ fontSize: '9px', color: '#ef4444', fontWeight: '700', cursor: 'pointer' }}
+                          >
+                            Clear
+                          </span>
+                        </div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                          {recentSearches.map((term, i) => (
+                            <span
+                              key={i}
+                              onClick={() => executeSearch(term)}
+                              style={{
+                                fontSize: '10.5px',
+                                backgroundColor: themeStyles.pillBg,
+                                color: themeStyles.text,
+                                padding: '4px 10px',
+                                borderRadius: '9999px',
+                                cursor: 'pointer',
+                                border: `1px solid ${themeStyles.border}`
+                              }}
+                            >
+                              🕒 {term}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <div>
+                      <div style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: themeStyles.subtext, letterSpacing: '0.5px', marginBottom: '8px' }}>
+                        🔥 Trending Searches
+                      </div>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                        {['Ather 450X', 'Ola S1 Pro', '72V Battery', 'DOT Helmet', 'Rynox Jacket', 'Non-RTO'].map((tag, i) => (
+                          <span
+                            key={i}
+                            onClick={() => executeSearch(tag)}
+                            style={{
+                              fontSize: '10.5px',
+                              backgroundColor: themeStyles.pillBg,
+                              color: themeStyles.text,
+                              padding: '4px 10px',
+                              borderRadius: '9999px',
+                              cursor: 'pointer',
+                              border: `1px solid ${themeStyles.border}`,
+                              fontWeight: '600'
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Controls */}
@@ -1374,6 +1295,112 @@ export default function App() {
 
         {/* ================= DYNAMIC VIEW ROUTING ================= */}
 
+        {/* VIEW 0: DEDICATED SEARCH RESULTS PAGE */}
+        {router.page === 'search' && (() => {
+          const query = (router.searchQuery || '').toLowerCase();
+          const searchFilteredList = MASTER_PRODUCTS.filter(p => {
+            const matchesQuery = `${p.name} ${p.brand} ${p.category} ${p.subCategory || ''} ${p.specs} ${p.color || ''} ${p.features || ''} ${p.compatibility || ''}`.toLowerCase().includes(query);
+            const matchesCategory = searchCategoryFilter === 'All' || p.category === searchCategoryFilter;
+            return matchesQuery && matchesCategory;
+          });
+
+          return (
+            <div style={{ maxWidth: '1380px', margin: '30px auto', padding: '0 20px 60px 20px' }}>
+              <button 
+                onClick={() => setRouter({ page: 'home' })}
+                style={{ background: 'none', border: 'none', color: themeStyles.subtext, fontSize: '12px', fontWeight: '700', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '20px' }}
+              >
+                <Icons.ArrowLeft /> Back to Home
+              </button>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '16px' }}>
+                <div>
+                  <h1 style={{ fontSize: '30px', fontWeight: '900', margin: 0 }}>
+                    Search Results for <span style={{ color: '#10b981' }}>"{router.searchQuery}"</span>
+                  </h1>
+                  <p style={{ fontSize: '12px', color: themeStyles.subtext, margin: '6px 0 0 0' }}>
+                    Found {searchFilteredList.length} products matching your query across our verified EV catalog.
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '8px', marginBottom: '24px', flexWrap: 'wrap' }}>
+                {['All', 'EV-Scooters', 'Accessories', 'Batteries', 'Spare Parts'].map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => setSearchCategoryFilter(cat)}
+                    style={{
+                      backgroundColor: searchCategoryFilter === cat ? (isDark ? '#fff' : '#18181b') : themeStyles.pillBg,
+                      color: searchCategoryFilter === cat ? (isDark ? '#18181b' : '#fff') : themeStyles.text,
+                      border: `1px solid ${themeStyles.border}`,
+                      borderRadius: '9999px',
+                      padding: '6px 14px',
+                      fontSize: '11px',
+                      fontWeight: '700',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
+              {searchFilteredList.length > 0 ? (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '18px' }}>
+                  {searchFilteredList.map(item => (
+                    <div 
+                      key={item.id} 
+                      onClick={() => openProduct(item)}
+                      style={{
+                        backgroundColor: themeStyles.cardBg,
+                        borderRadius: '20px',
+                        padding: '16px',
+                        border: `1px solid ${themeStyles.border}`,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        transition: 'transform 0.2s ease'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-4px)'}
+                      onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                    >
+                      <div>
+                        <div style={{ height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
+                          <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        </div>
+                        <div style={{ fontSize: '10px', fontWeight: '800', color: '#10b981', marginBottom: '4px' }}>{item.brand} • {item.category}</div>
+                        <h3 style={{ fontSize: '13.5px', fontWeight: '800', margin: '0 0 4px 0' }}>{item.name}</h3>
+                        <div style={{ fontSize: '10.5px', color: themeStyles.subtext, marginBottom: '14px' }}>{item.specs}</div>
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: `1px solid ${themeStyles.border}`, paddingTop: '10px' }}>
+                        <span style={{ fontSize: '16px', fontWeight: '900' }}>₹{item.price.toLocaleString('en-IN')}</span>
+                        <span style={{ fontSize: '11px', fontWeight: '700', backgroundColor: isDark ? '#fff' : '#18181b', color: isDark ? '#18181b' : '#fff', padding: '6px 14px', borderRadius: '999px' }}>
+                          View Details
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div style={{ padding: '60px 20px', textAlign: 'center', backgroundColor: themeStyles.cardBg, borderRadius: '24px', border: `1px solid ${themeStyles.border}` }}>
+                  <div style={{ fontSize: '36px', marginBottom: '12px' }}>🔍</div>
+                  <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '6px' }}>No EV products found matching "{router.searchQuery}"</h3>
+                  <p style={{ fontSize: '12px', color: themeStyles.subtext, maxWidth: '400px', margin: '0 auto 20px auto' }}>
+                    Try checking your spelling or search for popular terms like <strong>Ather</strong>, <strong>72V Battery</strong>, or <strong>Helmets</strong>.
+                  </p>
+                  <button 
+                    onClick={() => openCategory('EV-Scooters')}
+                    style={{ backgroundColor: isDark ? '#fff' : '#18181b', color: isDark ? '#18181b' : '#fff', border: 'none', borderRadius: '9999px', padding: '8px 20px', fontSize: '11.5px', fontWeight: '700', cursor: 'pointer' }}
+                  >
+                    Browse EV Scooters
+                  </button>
+                </div>
+              )}
+            </div>
+          );
+        })()}
+
         {/* VIEW 1: CATEGORY LISTING PAGE */}
         {router.page === 'category' && (
           <div style={{ maxWidth: '1380px', margin: '30px auto', padding: '0 20px 60px 20px' }}>
@@ -1414,8 +1441,8 @@ export default function App() {
                       justifyContent: 'space-between',
                       transition: 'transform 0.2s ease'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-4px)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
                   >
                     <div>
                       <div style={{ height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
@@ -1441,16 +1468,10 @@ export default function App() {
         {router.page === 'product' && router.product && (() => {
           const prod = router.product;
           
-          // Rule-based Attribute Matching + Cosine Similarity Ranking across color, features & compatibility
           const getRecommendations = () => {
             const sub = (prod.subCategory || '').toLowerCase();
             let targetCategories = [];
 
-            // Rule matrix:
-            // For EV-Scooter: Helmet, jacket, gloves, phone holder and battery
-            // For Helmet: Jacket and gloves
-            // For Jacket: Helmet and gloves
-            // For Gloves: Helmet and phone holder
             if (sub === 'scooter') {
               targetCategories = ['helmet', 'jacket', 'gloves', 'phone holder', 'battery'];
             } else if (sub === 'helmet') {
@@ -1463,7 +1484,6 @@ export default function App() {
 
             if (targetCategories.length === 0) return [];
 
-            // For each target category required by the user, find the candidate with the highest Cosine Similarity
             const bestMatchesPerCategory = [];
 
             targetCategories.forEach(targetSub => {
@@ -1472,16 +1492,13 @@ export default function App() {
               );
 
               if (matchingCandidates.length > 0) {
-                // Compute Cosine Similarity against the current product's attributes (color, features, compatibility)
                 const scored = matchingCandidates.map(cand => ({
                   product: cand,
                   similarityScore: calculateAttributeCosineSimilarity(prod, cand)
                 }));
 
-                // Sort descending by highest cosine similarity
                 scored.sort((a, b) => b.similarityScore - a.similarityScore);
 
-                // Select the optimal match for this specific attribute category
                 bestMatchesPerCategory.push({
                   ...scored[0].product,
                   cosineScorePct: Math.min(99, Math.max(78, Math.round(scored[0].similarityScore * 100)))
@@ -1539,7 +1556,7 @@ export default function App() {
                     {prod.description}
                   </p>
 
-                  {/* Explicit Attribute Tags */}
+                  {/* Attribute Tags */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '20px', fontSize: '11px' }}>
                     {prod.color && (
                       <div style={{ backgroundColor: themeStyles.pillBg, padding: '6px 12px', borderRadius: '8px', border: `1px solid ${themeStyles.border}` }}>
@@ -1628,7 +1645,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* ATTRIBUTE-BASED COSINE SIMILARITY RECOMMENDATIONS */}
+              {/* Cosine Similarity Recommendations */}
               {recommendedItems.length > 0 && (
                 <div style={{ marginBottom: '50px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '8px' }}>
@@ -1662,7 +1679,6 @@ export default function App() {
                           position: 'relative'
                         }}
                       >
-                        {/* Similarity Badge */}
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                           <span style={{ fontSize: '8.5px', fontWeight: '800', color: '#10b981', textTransform: 'uppercase' }}>
                             {rec.subCategory || rec.category}
@@ -1693,7 +1709,7 @@ export default function App() {
                 </div>
               )}
 
-              {/* Same Category Horizontal List */}
+              {/* Same Category */}
               {sameCategoryItems.length > 0 && (
                 <div>
                   <h2 style={{ fontSize: '20px', fontWeight: '900', textTransform: 'uppercase', marginBottom: '16px' }}>
@@ -1763,7 +1779,7 @@ export default function App() {
                 }}>
                   {/* Left-Aligned Editorial Headline Block */}
                   <div style={{ maxWidth: '580px', zIndex: 2 }}>
-                    {/* Editorial Kicker Badge */}
+                    {/* Editorial Tagline / Kicker Badge */}
                     <div style={{
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -1776,7 +1792,7 @@ export default function App() {
                       marginBottom: '14px'
                     }}>
                       <span>The Next Era of Mobility</span>
-                      <span style={{ fontSize: '13px' }}>↗</span>
+                      <span style={{ fontSize: '13px' }}>⚡</span>
                     </div>
 
                     {/* Editorial Headline */}
@@ -1789,8 +1805,8 @@ export default function App() {
                       color: themeStyles.text,
                       margin: '0 0 16px 0'
                     }}>
-                      Ride Beyond<br />
-                      <span style={{ fontStyle: 'italic', fontWeight: '400' }}>Horizons</span>
+                      Electrify<br />
+                      <span style={{ fontStyle: 'italic', fontWeight: '400' }}>the Horizon</span>
                     </h1>
 
                     {/* Sub-description */}
@@ -1943,7 +1959,15 @@ export default function App() {
                       <span style={{ fontSize: '16px' }}>📍</span>
                       <div>
                         <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>IDC Range</div>
-                        <div style={{ fontSize: '10px', color: themeStyles.subtext }}>120 km - 212 km</div>
+                        <select 
+                          value={heroSearchRange}
+                          onChange={(e) => setHeroSearchRange(e.target.value)}
+                          style={{ background: 'none', border: 'none', outline: 'none', fontSize: '10px', color: themeStyles.subtext, cursor: 'pointer', padding: 0 }}
+                        >
+                          <option value="All" style={{ background: themeStyles.cardBg }}>All Ranges</option>
+                          <option value="120" style={{ background: themeStyles.cardBg }}>120 km - 150 km</option>
+                          <option value="195" style={{ background: themeStyles.cardBg }}>195 km - 212 km</option>
+                        </select>
                       </div>
                     </div>
 
@@ -1954,7 +1978,17 @@ export default function App() {
                       <span style={{ fontSize: '16px' }}>🇮🇳</span>
                       <div>
                         <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>Delivery City</div>
-                        <div style={{ fontSize: '10px', color: themeStyles.subtext }}>Bengaluru, NCR, Pune</div>
+                        <select 
+                          value={heroSearchCity}
+                          onChange={(e) => setHeroSearchCity(e.target.value)}
+                          style={{ background: 'none', border: 'none', outline: 'none', fontSize: '10px', color: themeStyles.subtext, cursor: 'pointer', padding: 0 }}
+                        >
+                          <option value="All" style={{ background: themeStyles.cardBg }}>All Hubs</option>
+                          <option value="Bengaluru" style={{ background: themeStyles.cardBg }}>Bengaluru, KA</option>
+                          <option value="Delhi NCR" style={{ background: themeStyles.cardBg }}>Delhi NCR</option>
+                          <option value="Pune" style={{ background: themeStyles.cardBg }}>Pune, MH</option>
+                          <option value="Hyderabad" style={{ background: themeStyles.cardBg }}>Hyderabad, TS</option>
+                        </select>
                       </div>
                     </div>
 
@@ -1994,7 +2028,7 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* 4-Item Value Proposition Bar (Directly Matching Roamora) */}
+                {/* 4-Item Value Proposition Bar (Matching Roamora Layout) */}
                 <div style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(4, 1fr)',
@@ -2136,6 +2170,99 @@ export default function App() {
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: `1px solid ${themeStyles.border}`, paddingTop: '10px' }}>
                           <div style={{ fontSize: '16px', fontWeight: '900' }}>₹{item.price.toLocaleString('en-IN')}</div>
                           <span style={{ backgroundColor: isDark ? '#ffffff' : '#18181b', color: isDark ? '#18181b' : '#ffffff', borderRadius: '9999px', padding: '6px 12px', fontSize: '10.5px', fontWeight: '700' }}>View</span>
+                        </div>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+              </section>
+            </Reveal>
+
+            {/* ================= 5. EV-SCOOTERS FLEET ================= */}
+            <Reveal direction="up">
+              <section id="ev-catalog" style={{ maxWidth: '1380px', margin: '0 auto', padding: '10px 20px 50px 20px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                  <div>
+                    <h2 style={{ fontSize: '20px', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '-0.4px', margin: 0 }}>
+                      EV-SCOOTERS FLEET
+                    </h2>
+                    <p style={{ fontSize: '11px', color: themeStyles.subtext, margin: '2px 0 0 0' }}>Choose between high-speed performance highway commuters and low-speed non-RTO runabouts.</p>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '6px', backgroundColor: themeStyles.pillBg, padding: '4px', borderRadius: '9999px', border: `1px solid ${themeStyles.border}` }}>
+                    <button 
+                      onClick={() => setEvTab('High-Speed')}
+                      style={{
+                        backgroundColor: evTab === 'High-Speed' ? (isDark ? '#fff' : '#18181b') : 'transparent',
+                        color: evTab === 'High-Speed' ? (isDark ? '#18181b' : '#fff') : themeStyles.text,
+                        border: 'none',
+                        borderRadius: '9999px',
+                        padding: '6px 16px',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      High Speed EV Scooter
+                    </button>
+                    <button 
+                      onClick={() => setEvTab('Low-Speed')}
+                      style={{
+                        backgroundColor: evTab === 'Low-Speed' ? (isDark ? '#fff' : '#18181b') : 'transparent',
+                        color: evTab === 'Low-Speed' ? (isDark ? '#18181b' : '#fff') : themeStyles.text,
+                        border: 'none',
+                        borderRadius: '9999px',
+                        padding: '6px 16px',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Slow EV Scooter (Non-RTO)
+                    </button>
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
+                  {categorizedScooters[evTab].map((scooter, idx) => (
+                    <Reveal key={scooter.id} delay={idx * 75} direction="up">
+                      <div 
+                        onClick={() => openProduct(scooter)}
+                        style={{
+                          backgroundColor: themeStyles.cardBg,
+                          borderRadius: '20px',
+                          padding: '16px',
+                          border: `1px solid ${themeStyles.border}`,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'space-between',
+                          height: '100%',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                            <span style={{ fontSize: '8.5px', fontWeight: '800', padding: '2px 7px', borderRadius: '4px', backgroundColor: themeStyles.pillBg, color: themeStyles.text }}>
+                              {scooter.badge}
+                            </span>
+                            <button onClick={(e) => { e.stopPropagation(); toggleFav(scooter.id); }} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                              <Icons.Heart active={favorites.includes(scooter.id)} />
+                            </button>
+                          </div>
+                          <div style={{ height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '10px' }}>
+                            <img src={scooter.img} alt={scooter.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                          </div>
+                          <h3 style={{ fontSize: '13px', fontWeight: '800', margin: '0 0 2px 0' }}>{scooter.name}</h3>
+                          <div style={{ fontSize: '10px', color: themeStyles.subtext, marginBottom: '6px' }}>{scooter.brand}</div>
+                          <div style={{ fontSize: '10px', color: themeStyles.subtext, marginBottom: '14px' }}>{scooter.specs}</div>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: `1px solid ${themeStyles.border}`, paddingTop: '10px' }}>
+                          <span style={{ fontSize: '15px', fontWeight: '900' }}>₹{scooter.price.toLocaleString('en-IN')}</span>
+                          <span 
+                            style={{ backgroundColor: isDark ? '#fff' : '#18181b', color: isDark ? '#18181b' : '#fff', borderRadius: '9999px', padding: '6px 12px', fontSize: '10.5px', fontWeight: '700' }}
+                          >
+                            View Details
+                          </span>
                         </div>
                       </div>
                     </Reveal>
@@ -2354,7 +2481,6 @@ export default function App() {
         {/* ================= 16. FOOTER ================= */}
         <footer style={{ maxWidth: '1380px', margin: '0 auto', padding: '0 20px 30px 20px', borderTop: `1px solid ${themeStyles.border}` }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr 1.3fr', gap: '24px', padding: '36px 0', borderBottom: `1px solid ${themeStyles.border}` }}>
-            {/* Col 1 */}
             <div>
               <div onClick={() => setRouter({ page: 'home' })} style={{ marginBottom: '14px', cursor: 'pointer' }}>
                 <img src="/GBGX_logo_black_transparent.png" alt="GBGX Logo" style={{ height: '22px', width: 'auto', objectFit: 'contain', filter: isDark ? 'invert(1)' : 'none' }} />
@@ -2374,8 +2500,6 @@ export default function App() {
                 ))}
               </div>
             </div>
-
-            {/* Col 2 */}
             <div>
               <h4 style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', marginBottom: '12px' }}>EV Catalog</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '7px', fontSize: '10.5px', color: themeStyles.subtext }}>
@@ -2386,8 +2510,6 @@ export default function App() {
                 <span onClick={() => openCategory('Accessories')} style={{ cursor: 'pointer' }}>Riding Jackets & Gloves</span>
               </div>
             </div>
-
-            {/* Col 3 */}
             <div>
               <h4 style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', marginBottom: '12px' }}>Partner & Fleet</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '7px', fontSize: '10.5px', color: themeStyles.subtext }}>
@@ -2398,8 +2520,6 @@ export default function App() {
                 <span>Investor Relations</span>
               </div>
             </div>
-
-            {/* Col 4 */}
             <div>
               <h4 style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', marginBottom: '12px' }}>Customer Care</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '7px', fontSize: '10.5px', color: themeStyles.subtext }}>
@@ -2410,8 +2530,6 @@ export default function App() {
                 <span>Privacy & Terms</span>
               </div>
             </div>
-
-            {/* Col 5 */}
             <div>
               <h4 style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', marginBottom: '12px' }}>Corporate Headquarters</h4>
               <div style={{ fontSize: '12px', fontWeight: '900', color: themeStyles.text, marginBottom: '6px' }}>📞 +91 88000 23537</div>
@@ -2420,8 +2538,6 @@ export default function App() {
               <div style={{ fontSize: '9px', color: themeStyles.subtext }}>Hours: Mon - Sat: 09:00 - 20:00 IST</div>
             </div>
           </div>
-
-          {/* Legal Bar */}
           <div style={{ paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '9.5px', color: themeStyles.subtext }}>
             <div>© 2026 GBGX Mobility Technologies Private Limited. All rights reserved.</div>
             <div style={{ display: 'flex', gap: '16px' }}>
