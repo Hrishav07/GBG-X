@@ -27,7 +27,7 @@ function IntroLoader({ onComplete }) {
 
   const LoaderIcons = {
     Scooter: () => (
-      <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="#e8e6ed" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/>
         <path d="M5 18H9l4-9h4l2 4"/><path d="M12 9l3-4h3"/>
       </svg>
@@ -46,7 +46,7 @@ function IntroLoader({ onComplete }) {
   };
 
   const stagesData = [
-    { label: "INITIALIZING EV COMMUTE", sub: "Aero-Step Electric Dynamics", icon: <LoaderIcons.Scooter />, accent: "#10b981" },
+    { label: "INITIALIZING EV COMMUTE", sub: "Aero-Step Electric Dynamics", icon: <LoaderIcons.Scooter />, accent: "#eeeef0" },
     { label: "SYNCING RIDER SAFETY GEAR", sub: "CE Level 2 Certified Armor", icon: <LoaderIcons.Apparel />, accent: "#f59e0b" },
     { label: "CHARGING AIS-156 POWER CELL", sub: "Smart CAN-BMS 72V Architecture", icon: <LoaderIcons.Battery />, accent: "#3b82f6" }
   ];
@@ -120,7 +120,7 @@ function IntroLoader({ onComplete }) {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2, animation: 'gbgxLogoZoomIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards' }}>
             <img src="/GBGX_logo_black_transparent.png" alt="GBGX Logo" onError={(e) => { e.target.style.display = 'none'; }} style={{ height: '52px', width: 'auto', filter: 'invert(1) drop-shadow(0 0 25px rgba(255,255,255,0.6))', display: 'block', marginBottom: '16px' }} />
             <div style={{ fontSize: '28px', fontWeight: '900', letterSpacing: '4px', color: '#ffffff', textTransform: 'uppercase' }}>GBGX</div>
-            <div style={{ fontSize: '10px', fontWeight: '800', letterSpacing: '3px', color: '#10b981', textTransform: 'uppercase', marginTop: '6px' }}>BHARAT ELECTRIC MOBILITY</div>
+            <div style={{ fontSize: '10px', fontWeight: '800', letterSpacing: '3px', color: '#120aa7', textTransform: 'uppercase', marginTop: '6px' }}>The New Era of Mobility</div>
           </div>
         )}
 
@@ -1721,7 +1721,7 @@ export default function App() {
                                 border: `1px solid ${themeStyles.border}`
                               }}
                             >
-                              🕒 {term}
+                               {term}
                             </span>
                           ))}
                         </div>
@@ -1730,7 +1730,7 @@ export default function App() {
 
                     <div>
                       <div style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: themeStyles.subtext, letterSpacing: '0.5px', marginBottom: '8px' }}>
-                        🔥 Trending Searches
+                         Trending Searches
                       </div>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                         {['Ather 450X', 'Ola S1 Pro', '72V Battery', 'DOT Helmet', 'Rynox Jacket', 'Non-RTO'].map((tag, i) => (
@@ -2129,17 +2129,17 @@ export default function App() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '20px', fontSize: '11px' }}>
                     {prod.color && (
                       <div style={{ backgroundColor: themeStyles.pillBg, padding: '6px 12px', borderRadius: '8px', border: `1px solid ${themeStyles.border}` }}>
-                        🎨 <strong>Colour / Finish:</strong> {prod.color}
+                         <strong>Colour / Finish:</strong> {prod.color}
                       </div>
                     )}
                     {prod.compatibility && (
                       <div style={{ backgroundColor: themeStyles.pillBg, padding: '6px 12px', borderRadius: '8px', border: `1px solid ${themeStyles.border}` }}>
-                        🔄 <strong>Compatibility:</strong> {prod.compatibility}
+                         <strong>Compatibility:</strong> {prod.compatibility}
                       </div>
                     )}
                     {prod.features && (
                       <div style={{ backgroundColor: themeStyles.pillBg, padding: '6px 12px', borderRadius: '8px', border: `1px solid ${themeStyles.border}` }}>
-                        ⚡ <strong>Key Features:</strong> {prod.features}
+                         <strong>Key Features:</strong> {prod.features}
                       </div>
                     )}
                   </div>
@@ -2357,12 +2357,12 @@ export default function App() {
                       fontSize: '11px',
                       fontWeight: '700',
                       letterSpacing: '1px',
-                      color: isDark ? '#10b981' : '#059669',
+                      color: isDark ? '#eff3f2' : '#e8eceb',
                       textTransform: 'uppercase',
                       marginBottom: '14px'
                     }}>
                       <span>The Next Era of Mobility</span>
-                      <span style={{ fontSize: '13px' }}>⚡</span>
+                      <span style={{ fontSize: '13px' }}></span>
                     </div>
 
                     <h1 style={{
@@ -2503,9 +2503,9 @@ export default function App() {
                     backdropFilter: 'blur(10px)'
                   }}>
                     <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <span style={{ fontSize: '16px' }}>⚡</span>
+                      <span style={{ fontSize: '16px' }}></span>
                       <div>
-                        <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>EV Type?</div>
+                        <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>EV Type:</div>
                         <select 
                           value={evTab}
                           onChange={(e) => setEvTab(e.target.value)}
@@ -2520,7 +2520,7 @@ export default function App() {
                     <div style={{ width: '1px', height: '30px', backgroundColor: themeStyles.border }} />
 
                     <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <span style={{ fontSize: '16px' }}>📍</span>
+                      <span style={{ fontSize: '16px' }}></span>
                       <div>
                         <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>IDC Range</div>
                         <select 
@@ -2561,7 +2561,7 @@ export default function App() {
                       <span style={{ fontSize: '16px' }}>🛡️</span>
                       <div>
                         <div style={{ fontSize: '10.5px', fontWeight: '800', color: themeStyles.text }}>Subsidy</div>
-                        <div style={{ fontSize: '10px', color: '#10b981', fontWeight: '700' }}>FAME-II Included</div>
+                        <div style={{ fontSize: '10px', color: '#f1f6f5', fontWeight: '700' }}>FAME-II Included</div>
                       </div>
                     </div>
 
@@ -2984,9 +2984,9 @@ export default function App() {
             </div>
             <div>
               <h4 style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', marginBottom: '12px' }}>Corporate Headquarters</h4>
-              <div style={{ fontSize: '12px', fontWeight: '900', color: themeStyles.text, marginBottom: '6px' }}>📞 +91 88000 23537</div>
-              <div style={{ fontSize: '11px', color: themeStyles.subtext, marginBottom: '6px' }}>✉️ contact@gbgx.in</div>
-              <div style={{ fontSize: '10.5px', color: themeStyles.subtext, lineHeight: 1.5, marginBottom: '8px' }}>📍 Tower - B, The Corenthum, Noida Sector 62, Uttar Pradesh - 201301, India</div>
+              <div style={{ fontSize: '12px', fontWeight: '900', color: themeStyles.text, marginBottom: '6px' }}> +91 88000 23537</div>
+              <div style={{ fontSize: '11px', color: themeStyles.subtext, marginBottom: '6px' }}> contact@gbgx.in</div>
+              <div style={{ fontSize: '10.5px', color: themeStyles.subtext, lineHeight: 1.5, marginBottom: '8px' }}> Tower - B, The Corenthum, Noida Sector 62, Uttar Pradesh - 201301, India</div>
               <div style={{ fontSize: '9px', color: themeStyles.subtext }}>Hours: Mon - Sat: 09:00 - 20:00 IST</div>
             </div>
           </div>
