@@ -246,7 +246,7 @@ function AuthModal({ isOpen, onClose, initialMode = 'signup', onAuthSuccess }) {
               fontSize: '10px',
               fontWeight: '800',
               letterSpacing: '1.5px',
-              color: '#10b981',
+              color: '#382178',
               textTransform: 'uppercase',
               backgroundColor: 'rgba(0,0,0,0.5)',
               backdropFilter: 'blur(6px)',
@@ -307,7 +307,7 @@ function AuthModal({ isOpen, onClose, initialMode = 'signup', onAuthSuccess }) {
           {signupSuccessNotice && mode === 'signin' && (
             <div style={{
               backgroundColor: 'rgba(16, 185, 129, 0.15)',
-              color: '#10b981',
+              color: '#25187e',
               border: '1px solid rgba(16, 185, 129, 0.3)',
               padding: '8px 14px',
               borderRadius: '8px',
@@ -690,12 +690,12 @@ const Icons = {
   ),
   AtherLogo: () => (
     <svg width="22" height="22" viewBox="0 0 100 100" fill="currentColor">
-      <path d="M50 5 L90 85 L72 85 L50 40 L28 85 L10 85 Z" /><polygon points="50,55 60,78 40,78" fill="#10b981" />
+      <path d="M50 5 L90 85 L72 85 L50 40 L28 85 L10 85 Z" /><polygon points="50,55 60,78 40,78" fill="#2f2989" />
     </svg>
   ),
   OlaLogo: () => (
     <svg width="24" height="20" viewBox="0 0 100 80" fill="currentColor">
-      <ellipse cx="50" cy="40" rx="36" ry="24" fill="none" stroke="currentColor" strokeWidth="12" /><circle cx="50" cy="40" r="10" fill="#10b981" />
+      <ellipse cx="50" cy="40" rx="36" ry="24" fill="none" stroke="currentColor" strokeWidth="12" /><circle cx="50" cy="40" r="10" fill="#181e74" />
     </svg>
   ),
   TVSLogo: () => (
@@ -1538,7 +1538,7 @@ export default function App() {
               display: 'flex',
               alignItems: 'center',
               width: isSearchFocused ? '340px' : '270px',
-              border: `1px solid ${isSearchFocused ? '#10b981' : themeStyles.border}`,
+              border: `1px solid ${isSearchFocused ? '#221d75' : themeStyles.border}`,
               transition: 'width 0.25s ease, border-color 0.2s ease',
               boxShadow: isSearchFocused ? '0 0 0 3px rgba(16, 185, 129, 0.15)' : 'none'
             }}>
@@ -1645,7 +1645,7 @@ export default function App() {
                       </span>
                       <span 
                         onClick={() => executeSearch()} 
-                        style={{ fontSize: '10px', color: '#10b981', fontWeight: '700', cursor: 'pointer' }}
+                        style={{ fontSize: '10px', color: '#dedde6', fontWeight: '700', cursor: 'pointer' }}
                       >
                         View all results →
                       </span>
@@ -1679,7 +1679,7 @@ export default function App() {
                                 {item.brand} • {item.category}
                               </div>
                             </div>
-                            <div style={{ fontSize: '11px', fontWeight: '900', color: '#10b981', flexShrink: 0 }}>
+                            <div style={{ fontSize: '11px', fontWeight: '900', color: '#442789', flexShrink: 0 }}>
                               ₹{item.price.toLocaleString('en-IN')}
                             </div>
                           </div>
@@ -1831,7 +1831,7 @@ export default function App() {
                     <>
                       <div style={{ padding: '8px 12px', borderBottom: `1px solid ${themeStyles.border}` }}>
                         <div style={{ fontSize: '12px', fontWeight: '800' }}>{currentUser || "Rohan Sharma"}</div>
-                        <div style={{ fontSize: '10px', color: '#10b981', fontWeight: '700' }}>ID: GBGX-9842</div>
+                        <div style={{ fontSize: '10px', color: '#1f1a6f', fontWeight: '700' }}>ID: GBGX-9842</div>
                       </div>
                       <div style={{ padding: '8px 12px', fontSize: '11px', display: 'flex', justifyContent: 'space-between' }}>
                         <span>Wishlist</span> <span>({wishlistCount})</span>
@@ -1882,7 +1882,7 @@ export default function App() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '16px' }}>
                 <div>
                   <h1 style={{ fontSize: '30px', fontWeight: '900', margin: 0 }}>
-                    Search Results for <span style={{ color: '#10b981' }}>"{router.searchQuery}"</span>
+                    Search Results for <span style={{ color: '#f2f6f5' }}>"{router.searchQuery}"</span>
                   </h1>
                   <p style={{ fontSize: '12px', color: themeStyles.subtext, margin: '6px 0 0 0' }}>
                     Found {searchFilteredList.length} products matching your query across our verified EV catalog.
@@ -1935,7 +1935,7 @@ export default function App() {
                         <div style={{ height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
                           <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                         </div>
-                        <div style={{ fontSize: '10px', fontWeight: '800', color: '#10b981', marginBottom: '4px' }}>{item.brand} • {item.category}</div>
+                        <div style={{ fontSize: '10px', fontWeight: '800', color: '#1e1b72', marginBottom: '4px' }}>{item.brand} • {item.category}</div>
                         <h3 style={{ fontSize: '13.5px', fontWeight: '800', margin: '0 0 4px 0' }}>{item.name}</h3>
                         <div style={{ fontSize: '10.5px', color: themeStyles.subtext, marginBottom: '14px' }}>{item.specs}</div>
                       </div>
@@ -2014,7 +2014,7 @@ export default function App() {
                       <div style={{ height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
                         <img src={item.img} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                       </div>
-                      <div style={{ fontSize: '10px', fontWeight: '800', color: '#10b981', marginBottom: '4px' }}>{item.brand}</div>
+                      <div style={{ fontSize: '10px', fontWeight: '800', color: '#170d78', marginBottom: '4px' }}>{item.brand}</div>
                       <h3 style={{ fontSize: '13.5px', fontWeight: '800', margin: '0 0 4px 0' }}>{item.name}</h3>
                       <div style={{ fontSize: '10.5px', color: themeStyles.subtext, marginBottom: '14px' }}>{item.specs}</div>
                     </div>
@@ -2106,7 +2106,7 @@ export default function App() {
                 </div>
 
                 <div>
-                  <span style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.8px', backgroundColor: themeStyles.pillBg, padding: '4px 10px', borderRadius: '6px', color: '#10b981' }}>
+                  <span style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.8px', backgroundColor: themeStyles.pillBg, padding: '4px 10px', borderRadius: '6px', color: '#341599' }}>
                     {prod.brand} • {prod.category}
                   </span>
                   <h1 style={{ fontSize: '32px', fontWeight: '900', margin: '12px 0 8px 0' }}>{prod.name}</h1>
@@ -2197,7 +2197,7 @@ export default function App() {
                           <span>{seg.score}</span>
                         </div>
                         <div style={{ width: '100%', height: '8px', backgroundColor: themeStyles.pillBg, borderRadius: '4px', overflow: 'hidden' }}>
-                          <div style={{ width: seg.pct, height: '100%', backgroundColor: '#10b981', borderRadius: '4px' }}></div>
+                          <div style={{ width: seg.pct, height: '100%', backgroundColor: '#180f8d', borderRadius: '4px' }}></div>
                         </div>
                       </div>
                     ))}
@@ -2209,7 +2209,7 @@ export default function App() {
                     <div key={idx} style={{ backgroundColor: themeStyles.cardBg, borderRadius: '16px', padding: '16px', border: `1px solid ${themeStyles.border}` }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                         <span style={{ fontSize: '12px', fontWeight: '800' }}>{rev.name} ({rev.location})</span>
-                        <span style={{ fontSize: '10px', color: '#10b981', fontWeight: '700' }}>Verified Buyer</span>
+                        <span style={{ fontSize: '10px', color: '#342e7f', fontWeight: '700' }}>Verified Buyer</span>
                       </div>
                       <div style={{ display: 'flex', gap: '2px', marginBottom: '6px' }}><Icons.Star /><Icons.Star /><Icons.Star /><Icons.Star /><Icons.Star /></div>
                       <p style={{ fontSize: '11px', color: themeStyles.subtext, margin: 0 }}>"{rev.text}"</p>
@@ -2230,7 +2230,7 @@ export default function App() {
                         Paired by attribute vectors across <strong>colour matching, technical features, and ecosystem compatibility</strong>.
                       </p>
                     </div>
-                    <span style={{ fontSize: '9px', fontWeight: '800', padding: '4px 10px', borderRadius: '6px', backgroundColor: '#10b98122', color: '#10b981', border: '1px solid #10b98155' }}>
+                    <span style={{ fontSize: '9px', fontWeight: '800', padding: '4px 10px', borderRadius: '6px', backgroundColor: '#ebf0ee00', color: '#304194', border: '1px solid #1b146d55' }}>
                       ML ATTRIBUTE ENGINE ACTIVE
                     </span>
                   </div>
@@ -2253,10 +2253,10 @@ export default function App() {
                         }}
                       >
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                          <span style={{ fontSize: '8.5px', fontWeight: '800', color: '#10b981', textTransform: 'uppercase' }}>
+                          <span style={{ fontSize: '8.5px', fontWeight: '800', color: '#241e64', textTransform: 'uppercase' }}>
                             {rec.subCategory || rec.category}
                           </span>
-                          <span style={{ fontSize: '8px', fontWeight: '900', padding: '2px 6px', borderRadius: '4px', backgroundColor: '#10b981', color: '#fff' }}>
+                          <span style={{ fontSize: '8px', fontWeight: '900', padding: '2px 6px', borderRadius: '4px', backgroundColor: '#14177f', color: '#fff' }}>
                             {rec.cosineScorePct}% Match
                           </span>
                         </div>
@@ -2266,8 +2266,8 @@ export default function App() {
                             <img src={rec.img} alt={rec.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                           </div>
                           <h4 style={{ fontSize: '12px', fontWeight: '800', margin: '0 0 4px 0' }}>{rec.name}</h4>
-                          <div style={{ fontSize: '9.5px', color: themeStyles.subtext, marginBottom: '6px' }}>🎨 {rec.color}</div>
-                          <div style={{ fontSize: '9px', color: themeStyles.subtext, marginBottom: '10px' }}>🔄 {rec.compatibility}</div>
+                          <div style={{ fontSize: '9.5px', color: themeStyles.subtext, marginBottom: '6px' }}> {rec.color}</div>
+                          <div style={{ fontSize: '9px', color: themeStyles.subtext, marginBottom: '10px' }}>{rec.compatibility}</div>
                         </div>
 
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: `1px solid ${themeStyles.border}`, paddingTop: '8px' }}>
@@ -2838,7 +2838,7 @@ export default function App() {
                   <div style={{ backgroundColor: themeStyles.cardBg, borderRadius: '20px', padding: '24px', border: `1px solid ${themeStyles.border}` }}>
                     <h3 style={{ fontSize: '16px', fontWeight: '800', margin: '0 0 4px 0' }}>Partnership Request: {partnerType}</h3>
                     {partnerSubmitted ? (
-                      <div style={{ padding: '20px', textAlign: 'center', color: '#10b981', fontWeight: '800', fontSize: '13px' }}>Thank you! Your inquiry has been submitted.</div>
+                      <div style={{ padding: '20px', textAlign: 'center', color: '#221b83', fontWeight: '800', fontSize: '13px' }}>Thank you! Your inquiry has been submitted.</div>
                     ) : (
                       <form onSubmit={(e) => { e.preventDefault(); setPartnerSubmitted(true); }} style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px' }}>
                         <input type="text" placeholder="Full Name / Business Name" required value={partnerForm.name} onChange={e => setPartnerForm({...partnerForm, name: e.target.value})} style={{ backgroundColor: themeStyles.pillBg, border: `1px solid ${themeStyles.border}`, borderRadius: '8px', padding: '9px 12px', fontSize: '11px', color: themeStyles.text, outline: 'none' }} />
@@ -2896,7 +2896,7 @@ export default function App() {
                         <img src={rev.avatar} alt={rev.name} style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover' }} />
                         <div>
                           <div style={{ fontSize: '12px', fontWeight: '800' }}>{rev.name}</div>
-                          <div style={{ fontSize: '9.5px', color: '#10b981', fontWeight: '700' }}>{rev.scooter} • {rev.location}</div>
+                          <div style={{ fontSize: '9.5px', color: '#2d1f76', fontWeight: '700' }}>{rev.scooter} • {rev.location}</div>
                         </div>
                       </div>
                     </div>
@@ -2984,8 +2984,8 @@ export default function App() {
             </div>
             <div>
               <h4 style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', marginBottom: '12px' }}>Corporate Headquarters</h4>
-              <div style={{ fontSize: '12px', fontWeight: '900', color: themeStyles.text, marginBottom: '6px' }}> +91 88000 23537</div>
-              <div style={{ fontSize: '11px', color: themeStyles.subtext, marginBottom: '6px' }}> contact@gbgx.in</div>
+              <div style={{ fontSize: '12px', fontWeight: '900', color: themeStyles.text, marginBottom: '6px' }}><a href="tel:+918800023537" className="!text-gray-300 !no-underline"> +91 88000 23537</a></div>
+              <div style={{ fontSize: '11px', color: themeStyles.subtext, marginBottom: '6px' }}> <a href="mailto:support@gbgx.com" className="!text-gray-300 !no-underline"> support@gbgx.com</a></div>
               <div style={{ fontSize: '10.5px', color: themeStyles.subtext, lineHeight: 1.5, marginBottom: '8px' }}> Tower - B, The Corenthum, Noida Sector 62, Uttar Pradesh - 201301, India</div>
               <div style={{ fontSize: '9px', color: themeStyles.subtext }}>Hours: Mon - Sat: 09:00 - 20:00 IST</div>
             </div>
