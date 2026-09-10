@@ -2549,6 +2549,9 @@ export default function App() {
                           <option value="All" style={{ background: themeStyles.cardBg }}>All Hubs</option>
                           <option value="Bengaluru" style={{ background: themeStyles.cardBg }}>Bengaluru, KA</option>
                           <option value="Delhi NCR" style={{ background: themeStyles.cardBg }}>Delhi NCR</option>
+                          <option value="Guwahati" style={{ background: themeStyles.cardBg }}>Guwahati, AS</option>
+                          <option value="Mumbai" style={{ background: themeStyles.cardBg }}>Mumbai, MH</option>
+                          <option value="Satara" style={{ background: themeStyles.cardBg }}>Satara, MH</option>
                           <option value="Pune" style={{ background: themeStyles.cardBg }}>Pune, MH</option>
                           <option value="Hyderabad" style={{ background: themeStyles.cardBg }}>Hyderabad, TS</option>
                         </select>
@@ -2905,6 +2908,1159 @@ export default function App() {
               </section>
             </Reveal>
 
+            {/* ================= COMPLETE ABOUT US SECTION ================= */}
+<Reveal>
+  <section
+    id="about"
+    style={{
+      maxWidth: '1200px',
+      margin: '0 auto',
+      padding: '96px 24px',
+      borderTop: '1px solid #262626',
+      color: '#ffffff',
+      fontFamily: 'inherit',
+    }}
+  >
+    {/* 1. Header & Introduction */}
+    <div style={{ textAlign: 'center', maxWidth: '850px', margin: '0 auto 64px auto' }}>
+      <span
+        style={{
+          fontSize: '12px',
+          letterSpacing: '2px',
+          textTransform: 'uppercase',
+          color: '#888888',
+          fontWeight: 600,
+        }}
+      >
+        Our Journey
+      </span>
+      <h2
+        style={{
+          fontSize: '42px',
+          fontWeight: 700,
+          marginTop: '12px',
+          marginBottom: '20px',
+          letterSpacing: '-0.5px',
+        }}
+      >
+        EV Excellence, Redefined
+      </h2>
+      <p style={{ color: '#a3a3a3', fontSize: '16px', lineHeight: 1.8, marginBottom: '16px' }}>
+        GBG X was born from a singular vision—to transform how India experiences premium electric mobility.
+        What started as a passion project has evolved into the nation's most trusted destination for top-rated electric vehicles.
+      </p>
+      <p style={{ color: '#a3a3a3', fontSize: '16px', lineHeight: 1.8 }}>
+        We don't just sell scooters; we curate eco-friendly travel experiences. Every vehicle in our multi-brand EV inventory 
+        is handpicked, rigorously inspected, and presented with a level of transparency that sets new automotive retail standards.
+      </p>
+    </div>
+
+    {/* Key Highlights Banner */}
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+        gap: '20px',
+        marginBottom: '64px',
+      }}
+    >
+      <div style={{ backgroundColor: '#141414', border: '1px solid #262626', borderRadius: '16px', padding: '24px', textAlign: 'center' }}>
+        <h4 style={{ fontSize: '18px', fontWeight: 600, margin: '0 0 6px 0', color: '#ffffff' }}>Premium Selection</h4>
+        <p style={{ color: '#888888', fontSize: '14px', margin: 0 }}>Handpicked EVs</p>
+      </div>
+      <div style={{ backgroundColor: '#141414', border: '1px solid #262626', borderRadius: '16px', padding: '24px', textAlign: 'center' }}>
+        <h4 style={{ fontSize: '18px', fontWeight: 600, margin: '0 0 6px 0', color: '#ffffff' }}>Verified Quality</h4>
+        <p style={{ color: '#888888', fontSize: '14px', margin: 0 }}>100% Inspected</p>
+      </div>
+      <div style={{ backgroundColor: '#141414', border: '1px solid #262626', borderRadius: '16px', padding: '24px', textAlign: 'center' }}>
+        <h4 style={{ fontSize: '18px', fontWeight: 600, margin: '0 0 6px 0', color: '#ffffff' }}>Seamless Process</h4>
+        <p style={{ color: '#888888', fontSize: '14px', margin: 0 }}>Hassle Free</p>
+      </div>
+      <div style={{ backgroundColor: '#141414', border: '1px solid #262626', borderRadius: '16px', padding: '24px', textAlign: 'center' }}>
+        <h4 style={{ fontSize: '18px', fontWeight: 600, margin: '0 0 6px 0', color: '#ffffff' }}>Trusted Experience</h4>
+        <p style={{ color: '#888888', fontSize: '14px', margin: 0 }}>Active Since 2023</p>
+      </div>
+    </div>
+
+    {/* 2. Leadership Message */}
+    <div
+      style={{
+        backgroundColor: '#141414',
+        border: '1px solid #262626',
+        borderRadius: '20px',
+        padding: '48px 36px',
+        marginBottom: '80px',
+        position: 'relative',
+      }}
+    >
+      <span style={{ fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: '#888888', fontWeight: 600 }}>
+        Leadership Message
+      </span>
+      <p style={{ fontSize: '18px', lineHeight: 1.8, fontStyle: 'italic', color: '#e5e5e5', margin: '24px 0' }}>
+        "At GBG X, we don't just sell Scooters – we fulfill dreams. Every vehicle that leaves our showroom carries with it a promise:
+        a promise of quality, transparency, and a relationship that lasts well beyond the purchase. Our journey has been incredible,
+        but what excites me most is what lies ahead. Together, we're not just driving scooters; we're driving India's automotive future."
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <span style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff' }}>Akash Ali</span>
+        <span style={{ fontSize: '14px', color: '#a3a3a3' }}>Founder &amp; CEO, GBG X (GoBabyGo Private Limited)</span>
+        <span style={{ fontSize: '12px', color: '#666666' }}>Visionary Leader Since 2019</span>
+      </div>
+    </div>
+
+    {/* ================= THE LEGACY OF GBGX: TIMELINE INFOGRAPHIC ================= */}
+<div
+  style={{
+    width: '100%',
+    maxWidth: '1100px',
+    margin: '0 auto',
+    padding: '80px 20px',
+    color: '#ffffff',
+    fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    position: 'relative',
+    boxSizing: 'border-box',
+  }}
+>
+  {/* Section Header */}
+  <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+    <span
+      style={{
+        fontSize: '12px',
+        letterSpacing: '4px',
+        textTransform: 'uppercase',
+        color: '#9ca3af',
+        fontWeight: 600,
+        display: 'block',
+        marginBottom: '10px',
+      }}
+    >
+      Timeline Infographic
+    </span>
+    <h3
+      style={{
+        fontSize: '36px',
+        fontWeight: 800,
+        letterSpacing: '-0.5px',
+        margin: '0 0 10px 0',
+        textTransform: 'uppercase',
+      }}
+    >
+      The Legacy of GBGX
+    </h3>
+    <p
+      style={{
+        fontSize: '15px',
+        color: '#6b7280',
+        letterSpacing: '1px',
+        textTransform: 'uppercase',
+        margin: 0,
+      }}
+    >
+      From 2023 to Future
+    </p>
+
+    {/* Top Node Anchor */}
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '36px',
+      }}
+    >
+      <div
+        style={{
+          width: '12px',
+          height: '12px',
+          borderRadius: '50%',
+          backgroundColor: '#4b5563',
+          boxShadow: '0 0 0 4px rgba(75, 85, 99, 0.25)',
+        }}
+      />
+    </div>
+  </div>
+
+  {/* Timeline Container */}
+  <div style={{ position: 'relative', width: '100%', padding: '20px 0' }}>
+    {/* Continuous Vertical Axis Spine */}
+    <div
+      style={{
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: '50%',
+        width: '2px',
+        backgroundColor: '#27272a',
+        transform: 'translateX(-50%)',
+        zIndex: 1,
+      }}
+    />
+
+    {/* ================= ITEM 01: 2023 - THE BEGINNING ================= */}
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        marginBottom: '90px',
+        zIndex: 2,
+      }}
+    >
+      {/* Left Counter-Element: Stylized Script Accent */}
+      <div
+        style={{
+          flex: '1',
+          textAlign: 'right',
+          paddingRight: '60px',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+        }}
+      >
+        <span
+          style={{
+            fontFamily: 'cursive, "Brush Script MT", "Segoe Script", sans-serif',
+            fontSize: '32px',
+            color: '#a78bfa',
+            opacity: 0.85,
+            letterSpacing: '1px',
+            transform: 'rotate(-4deg)',
+          }}
+        >
+          Genesis
+        </span>
+      </div>
+
+      {/* Central Number Node */}
+      <div
+        style={{
+          width: '68px',
+          height: '68px',
+          borderRadius: '50%',
+          backgroundColor: '#1e1b4b',
+          border: '3px solid #312e81',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#ffffff',
+          fontSize: '20px',
+          fontWeight: 700,
+          flexShrink: 0,
+          boxShadow: '0 0 24px rgba(49, 46, 129, 0.45)',
+          zIndex: 3,
+        }}
+      >
+        01
+      </div>
+
+      {/* Right Content Block */}
+      <div
+        style={{
+          flex: '1',
+          paddingLeft: '60px',
+          position: 'relative',
+          textAlign: 'left',
+        }}
+      >
+        {/* Horizontal Connector Arm */}
+        <div
+          style={{
+            position: 'absolute',
+            left: '20px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+          }}
+        >
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#6366f1' }} />
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#6366f1' }} />
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#6366f1' }} />
+          <div style={{ width: '22px', height: '1.5px', backgroundColor: '#374151' }} />
+        </div>
+
+        <div style={{ maxWidth: '340px' }}>
+          <div style={{ display: 'inline-block', color: '#818cf8', fontSize: '12px', fontWeight: 700, letterSpacing: '1.5px', marginBottom: '4px' }}>
+            2023 • THE BEGINNING
+          </div>
+          <h4 style={{ fontSize: '18px', fontWeight: 700, margin: '0 0 8px 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            One-Stop EV Platform
+          </h4>
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#9ca3af', margin: 0 }}>
+            GBGX launched with a vision to create a comprehensive platform for electric scooters, prioritizing accessibility, rigorous reliability standards, and variety.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* ================= ITEM 02: 2023 - BUILDING ECOSYSTEM ================= */}
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        marginBottom: '90px',
+        zIndex: 2,
+      }}
+    >
+      {/* Left Content Block */}
+      <div
+        style={{
+          flex: '1',
+          paddingRight: '60px',
+          position: 'relative',
+          textAlign: 'right',
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
+      >
+        {/* Horizontal Connector Arm */}
+        <div
+          style={{
+            position: 'absolute',
+            right: '20px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            flexDirection: 'row-reverse',
+          }}
+        >
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#818cf8' }} />
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#818cf8' }} />
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#818cf8' }} />
+          <div style={{ width: '22px', height: '1.5px', backgroundColor: '#374151' }} />
+        </div>
+
+        <div style={{ maxWidth: '340px' }}>
+          <div style={{ display: 'inline-block', color: '#a78bfa', fontSize: '12px', fontWeight: 700, letterSpacing: '1.5px', marginBottom: '4px' }}>
+            2023 • EXPANSION
+          </div>
+          <h4 style={{ fontSize: '18px', fontWeight: 700, margin: '0 0 8px 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            Complete EV Solutions
+          </h4>
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#9ca3af', margin: 0 }}>
+            Expanded beyond two-wheelers to integrate complete ecosystem support: genuine OEM spare parts, advanced batteries, tires, regenerative brakes, and rider gear.
+          </p>
+        </div>
+      </div>
+
+      {/* Central Number Node */}
+      <div
+        style={{
+          width: '68px',
+          height: '68px',
+          borderRadius: '50%',
+          backgroundColor: '#312e81',
+          border: '3px solid #4338ca',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#ffffff',
+          fontSize: '20px',
+          fontWeight: 700,
+          flexShrink: 0,
+          boxShadow: '0 0 24px rgba(67, 56, 202, 0.45)',
+          zIndex: 3,
+        }}
+      >
+        02
+      </div>
+
+      {/* Right Counter-Element: Minimalist SVG Blueprint Diagram */}
+      <div
+        style={{
+          flex: '1',
+          paddingLeft: '60px',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <svg width="110" height="50" viewBox="0 0 110 50" fill="none" opacity="0.6">
+          <circle cx="25" cy="25" r="18" stroke="#818cf8" strokeWidth="1.5" strokeDasharray="3 3" />
+          <circle cx="85" cy="25" r="18" stroke="#818cf8" strokeWidth="1.5" strokeDasharray="3 3" />
+          <path d="M43 25H67" stroke="#818cf8" strokeWidth="1.5" />
+          <circle cx="55" cy="25" r="4" fill="#a78bfa" />
+        </svg>
+      </div>
+    </div>
+
+    {/* ================= ITEM 03: 2024 - NATIONWIDE REACH ================= */}
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        marginBottom: '90px',
+        zIndex: 2,
+      }}
+    >
+      {/* Left Counter-Element: Wireframe Network Motif */}
+      <div
+        style={{
+          flex: '1',
+          textAlign: 'right',
+          paddingRight: '60px',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+        }}
+      >
+        <svg width="110" height="50" viewBox="0 0 110 50" fill="none" opacity="0.6">
+          <circle cx="15" cy="15" r="5" fill="#6366f1" />
+          <circle cx="95" cy="35" r="5" fill="#818cf8" />
+          <circle cx="55" cy="25" r="7" stroke="#a78bfa" strokeWidth="1.5" />
+          <path d="M20 17L50 23M60 27L90 33" stroke="#4b5563" strokeWidth="1" strokeDasharray="2 2" />
+        </svg>
+      </div>
+
+      {/* Central Number Node */}
+      <div
+        style={{
+          width: '68px',
+          height: '68px',
+          borderRadius: '50%',
+          backgroundColor: '#4338ca',
+          border: '3px solid #6366f1',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#ffffff',
+          fontSize: '20px',
+          fontWeight: 700,
+          flexShrink: 0,
+          boxShadow: '0 0 24px rgba(99, 102, 241, 0.45)',
+          zIndex: 3,
+        }}
+      >
+        03
+      </div>
+
+      {/* Right Content Block */}
+      <div
+        style={{
+          flex: '1',
+          paddingLeft: '60px',
+          position: 'relative',
+          textAlign: 'left',
+        }}
+      >
+        {/* Horizontal Connector Arm */}
+        <div
+          style={{
+            position: 'absolute',
+            left: '20px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+          }}
+        >
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#6366f1' }} />
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#6366f1' }} />
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#6366f1' }} />
+          <div style={{ width: '22px', height: '1.5px', backgroundColor: '#374151' }} />
+        </div>
+
+        <div style={{ maxWidth: '340px' }}>
+          <div style={{ display: 'inline-block', color: '#818cf8', fontSize: '12px', fontWeight: 700, letterSpacing: '1.5px', marginBottom: '4px' }}>
+            2024 • SCALE
+          </div>
+          <h4 style={{ fontSize: '18px', fontWeight: 700, margin: '0 0 8px 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            Pan India Presence
+          </h4>
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#9ca3af', margin: 0 }}>
+            Serving urban commuters and commercial fleets across India with verified catalog specs, seamless digital comparisons, and streamlined procurement.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* ================= ITEM 04: 2024 - RIDER COMMUNITY ================= */}
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        marginBottom: '90px',
+        zIndex: 2,
+      }}
+    >
+      {/* Left Content Block */}
+      <div
+        style={{
+          flex: '1',
+          paddingRight: '60px',
+          position: 'relative',
+          textAlign: 'right',
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
+      >
+        {/* Horizontal Connector Arm */}
+        <div
+          style={{
+            position: 'absolute',
+            right: '20px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            flexDirection: 'row-reverse',
+          }}
+        >
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#818cf8' }} />
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#818cf8' }} />
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#818cf8' }} />
+          <div style={{ width: '22px', height: '1.5px', backgroundColor: '#374151' }} />
+        </div>
+
+        <div style={{ maxWidth: '340px' }}>
+          <div style={{ display: 'inline-block', color: '#a78bfa', fontSize: '12px', fontWeight: 700, letterSpacing: '1.5px', marginBottom: '4px' }}>
+            2024 • COMMUNITY
+          </div>
+          <h4 style={{ fontSize: '18px', fontWeight: 700, margin: '0 0 8px 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            Trust &amp; Convenience
+          </h4>
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#9ca3af', margin: 0 }}>
+            Cultivated a loyal nationwide collective of riders backed by full after-sales assistance, authentic customer reviews, and dedicated sustainable mobility clubs.
+          </p>
+        </div>
+      </div>
+
+      {/* Central Number Node */}
+      <div
+        style={{
+          width: '68px',
+          height: '68px',
+          borderRadius: '50%',
+          backgroundColor: '#581c87',
+          border: '3px solid #7e22ce',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#ffffff',
+          fontSize: '20px',
+          fontWeight: 700,
+          flexShrink: 0,
+          boxShadow: '0 0 24px rgba(126, 34, 206, 0.45)',
+          zIndex: 3,
+        }}
+      >
+        04
+      </div>
+
+      {/* Right Counter-Element: Minimal Stamp / Badge */}
+      <div
+        style={{
+          flex: '1',
+          paddingLeft: '60px',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <div
+          style={{
+            border: '1.5px dashed #4b5563',
+            borderRadius: '50%',
+            width: '54px',
+            height: '54px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '11px',
+            color: '#9ca3af',
+            textTransform: 'uppercase',
+            fontWeight: 700,
+            letterSpacing: '1px',
+            transform: 'rotate(12deg)',
+          }}
+        >
+          Verified
+        </div>
+      </div>
+    </div>
+
+    {/* ================= ITEM 05: 2025 & BEYOND - FUTURE READY ================= */}
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        marginBottom: '40px',
+        zIndex: 2,
+      }}
+    >
+      {/* Left Counter-Element: Infinity Horizon Vector */}
+      <div
+        style={{
+          flex: '1',
+          textAlign: 'right',
+          paddingRight: '60px',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+        }}
+      >
+        <span
+          style={{
+            fontSize: '34px',
+            fontWeight: 300,
+            color: '#c084fc',
+            letterSpacing: '2px',
+            textShadow: '0 0 16px rgba(192, 132, 252, 0.6)',
+          }}
+        >
+          ∞
+        </span>
+      </div>
+
+      {/* Central Number Node */}
+      <div
+        style={{
+          width: '68px',
+          height: '68px',
+          borderRadius: '50%',
+          backgroundColor: '#6b21a8',
+          border: '3px solid #a855f7',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#ffffff',
+          fontSize: '20px',
+          fontWeight: 700,
+          flexShrink: 0,
+          boxShadow: '0 0 28px rgba(168, 85, 247, 0.65)',
+          zIndex: 3,
+        }}
+      >
+        05
+      </div>
+
+      {/* Right Content Block */}
+      <div
+        style={{
+          flex: '1',
+          paddingLeft: '60px',
+          position: 'relative',
+          textAlign: 'left',
+        }}
+      >
+        {/* Horizontal Connector Arm */}
+        <div
+          style={{
+            position: 'absolute',
+            left: '20px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+          }}
+        >
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#c084fc' }} />
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#c084fc' }} />
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#c084fc' }} />
+          <div style={{ width: '22px', height: '1.5px', backgroundColor: '#374151' }} />
+        </div>
+
+        <div style={{ maxWidth: '340px' }}>
+          <div style={{ display: 'inline-block', color: '#c084fc', fontSize: '12px', fontWeight: 700, letterSpacing: '1.5px', marginBottom: '4px' }}>
+            2025 &amp; BEYOND • HORIZON
+          </div>
+          <h4 style={{ fontSize: '18px', fontWeight: 700, margin: '0 0 8px 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            Innovation Focused
+          </h4>
+          <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#9ca3af', margin: 0 }}>
+            Pioneering AI-driven vehicle recommendation engines, smart IoT telemetry for battery health, and high-density regional charging infrastructures.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom Terminal Node */}
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+        zIndex: 3,
+      }}
+    >
+      <div
+        style={{
+          width: '14px',
+          height: '14px',
+          borderRadius: '50%',
+          backgroundColor: '#a855f7',
+          boxShadow: '0 0 12px #a855f7',
+        }}
+      />
+    </div>
+  </div>
+
+  {/* Terminal Stats Summary Footer (Similar to the Bottom Legend Area) */}
+  <div
+    style={{
+      marginTop: '60px',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+      gap: '16px',
+      borderTop: '1px solid #1f2937',
+      paddingTop: '40px',
+      textAlign: 'center',
+    }}
+  >
+    <div>
+      <div style={{ fontSize: '28px', fontWeight: 800, color: '#f3f4f6' }}>2023</div>
+      <div style={{ fontSize: '12px', color: '#6b7280', letterSpacing: '1.5px', textTransform: 'uppercase', marginTop: '4px' }}>Year Founded</div>
+    </div>
+    <div>
+      <div style={{ fontSize: '28px', fontWeight: 800, color: '#818cf8' }}>5+</div>
+      <div style={{ fontSize: '12px', color: '#6b7280', letterSpacing: '1.5px', textTransform: 'uppercase', marginTop: '4px' }}>Core Milestones</div>
+    </div>
+    <div>
+      <div style={{ fontSize: '28px', fontWeight: 800, color: '#c084fc' }}>∞</div>
+      <div style={{ fontSize: '12px', color: '#6b7280', letterSpacing: '1.5px', textTransform: 'uppercase', marginTop: '4px' }}>Future Ahead</div>
+    </div>
+  </div>
+</div>
+
+    {/* 4. Who We Are: Vision, Mission & Values */}
+    <div style={{ marginBottom: '80px' }}>
+      <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 48px auto' }}>
+        <span style={{ fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: '#888888', fontWeight: 600 }}>
+          Who We Are
+        </span>
+        <h3 style={{ fontSize: '32px', fontWeight: 700, marginTop: '8px', marginBottom: '12px' }}>
+          Shaping the Future of Mobility
+        </h3>
+        <p style={{ color: '#a3a3a3', fontSize: '15px' }}>
+          Every decision we make is guided by our commitment to transform the automotive retail landscape in India.
+        </p>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', marginBottom: '32px' }}>
+        <div style={{ backgroundColor: '#141414', border: '1px solid #262626', borderRadius: '16px', padding: '36px' }}>
+          <h4 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#ffffff' }}>Our Vision</h4>
+          <p style={{ color: '#a3a3a3', fontSize: '15px', lineHeight: 1.7, margin: 0 }}>
+            To become India’s most loved automotive ecosystem—where every buyer finds their perfect electric vehicle match through technology, trust, and transparency.
+          </p>
+        </div>
+
+        <div style={{ backgroundColor: '#141414', border: '1px solid #262626', borderRadius: '16px', padding: '36px' }}>
+          <h4 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#ffffff' }}>Our Mission</h4>
+          <p style={{ color: '#a3a3a3', fontSize: '15px', lineHeight: 1.7, margin: 0 }}>
+            To democratize premium EV ownership by offering unmatched selection, fair EV pricing, and exceptional customer experience across every touchpoint.
+          </p>
+        </div>
+      </div>
+
+      {/* Core Values */}
+      <h4 style={{ fontSize: '14px', letterSpacing: '2px', textTransform: 'uppercase', color: '#888888', textAlign: 'center', marginBottom: '24px' }}>
+        Our Core Values
+      </h4>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+        <div style={{ backgroundColor: '#141414', border: '1px solid #262626', borderRadius: '14px', padding: '24px' }}>
+          <h5 style={{ fontSize: '16px', fontWeight: 600, color: '#ffffff', margin: '0 0 8px 0' }}>Trust First</h5>
+          <p style={{ color: '#888888', fontSize: '14px', margin: 0 }}>Every promise delivered</p>
+        </div>
+        <div style={{ backgroundColor: '#141414', border: '1px solid #262626', borderRadius: '14px', padding: '24px' }}>
+          <h5 style={{ fontSize: '16px', fontWeight: 600, color: '#ffffff', margin: '0 0 8px 0' }}>Innovation</h5>
+          <p style={{ color: '#888888', fontSize: '14px', margin: 0 }}>Tech-driven smart mobility solutions</p>
+        </div>
+        <div style={{ backgroundColor: '#141414', border: '1px solid #262626', borderRadius: '14px', padding: '24px' }}>
+          <h5 style={{ fontSize: '16px', fontWeight: 600, color: '#ffffff', margin: '0 0 8px 0' }}>Customer Focus</h5>
+          <p style={{ color: '#888888', fontSize: '14px', margin: 0 }}>Your satisfaction, our priority</p>
+        </div>
+        <div style={{ backgroundColor: '#141414', border: '1px solid #262626', borderRadius: '14px', padding: '24px' }}>
+          <h5 style={{ fontSize: '16px', fontWeight: 600, color: '#ffffff', margin: '0 0 8px 0' }}>Transparency</h5>
+          <p style={{ color: '#888888', fontSize: '14px', margin: 0 }}>No hidden costs, ever—only honest on-road prices</p>
+        </div>
+      </div>
+    </div>
+
+    {/* 5. Multi-Brand Philosophy & Partners */}
+    <div
+      style={{
+        backgroundColor: '#141414',
+        border: '1px solid #262626',
+        borderRadius: '20px',
+        padding: '48px 36px',
+      }}
+    >
+      <div style={{ maxWidth: '800px', marginBottom: '36px' }}>
+        <span style={{ fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: '#888888', fontWeight: 600 }}>
+          Multi-Brand Philosophy
+        </span>
+        <h3 style={{ fontSize: '32px', fontWeight: 700, marginTop: '8px', marginBottom: '14px' }}>
+          One Destination, Infinite Choices
+        </h3>
+        <p style={{ color: '#a3a3a3', fontSize: '15px', lineHeight: 1.7, margin: 0 }}>
+          We believe every buyer deserves the freedom to explore the best electric mobility solutions. 
+          That's why GBG X partners with 10+ leading EV brands, bringing you an unparalleled selection of electric scooters under one roof—or one click.
+        </p>
+      </div>
+
+      {/* Feature Bullet Points */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: '16px',
+          marginBottom: '40px',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#d4d4d4', fontSize: '14px' }}>
+          <span style={{ color: '#22c55e' }}>✓</span> Compare across brands in one place
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#d4d4d4', fontSize: '14px' }}>
+          <span style={{ color: '#22c55e' }}>✓</span> Unbiased expert recommendations
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#d4d4d4', fontSize: '14px' }}>
+          <span style={{ color: '#22c55e' }}>✓</span> Best price guarantee
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#d4d4d4', fontSize: '14px' }}>
+          <span style={{ color: '#22c55e' }}>✓</span> Seamless trade-in options
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#d4d4d4', fontSize: '14px' }}>
+          <span style={{ color: '#22c55e' }}>✓</span> Complete after-sales support
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#d4d4d4', fontSize: '14px' }}>
+          <span style={{ color: '#22c55e' }}>✓</span> Certified quality assurance
+        </div>
+      </div>
+
+      {/* Trusted Partner Brand Badges */}
+      <div style={{ borderTop: '1px solid #262626', paddingTop: '32px' }}>
+        <h4 style={{ fontSize: '13px', letterSpacing: '1.5px', textTransform: 'uppercase', color: '#888888', marginBottom: '20px' }}>
+          Trusted Partners
+        </h4>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '36px' }}>
+          {['E-Sprinto', 'GBG EV', 'YoBykes', 'Goeen', 'Bgauss', 'Zelio', 'Gravton'].map((brand) => (
+            <span
+              key={brand}
+              style={{
+                backgroundColor: '#1e1e1e',
+                border: '1px solid #333333',
+                borderRadius: '8px',
+                padding: '8px 18px',
+                fontSize: '14px',
+                fontWeight: 600,
+                color: '#e5e5e5',
+              }}
+            >
+              {brand}
+            </span>
+          ))}
+        </div>
+
+        {/* Counter Cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+          <div style={{ backgroundColor: '#1c1c1c', borderRadius: '12px', padding: '20px', border: '1px solid #2e2e2e' }}>
+            <div style={{ fontSize: '28px', fontWeight: 700, color: '#ffffff' }}>10+</div>
+            <div style={{ fontSize: '13px', color: '#888888', marginTop: '4px' }}>Premium Brands Under One Roof</div>
+          </div>
+          <div style={{ backgroundColor: '#1c1c1c', borderRadius: '12px', padding: '20px', border: '1px solid #2e2e2e' }}>
+            <div style={{ fontSize: '28px', fontWeight: 700, color: '#ffffff' }}>500+</div>
+            <div style={{ fontSize: '13px', color: '#888888', marginTop: '4px' }}>EV Scooters Ready for Delivery</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Reveal>
+
+{/* ================= BLOG SECTION ================= */}
+<Reveal>
+  <section
+    id="blog"
+    style={{
+      maxWidth: '1200px',
+      margin: '0 auto',
+      padding: '96px 24px',
+      borderTop: '1px solid #262626',
+      color: '#ffffff',
+    }}
+  >
+    {/* Section Header */}
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+        gap: '16px',
+        marginBottom: '56px',
+      }}
+    >
+      <div>
+        <span
+          style={{
+            fontSize: '12px',
+            letterSpacing: '2px',
+            textTransform: 'uppercase',
+            color: '#888888',
+            fontWeight: 600,
+          }}
+        >
+          Insights &amp; Updates
+        </span>
+        <h2
+          style={{
+            fontSize: '40px',
+            fontWeight: 700,
+            marginTop: '10px',
+            marginBottom: '8px',
+            letterSpacing: '-0.5px',
+          }}
+        >
+          From the Journal
+        </h2>
+        <p style={{ color: '#8e8e8e', fontSize: '15px', margin: 0 }}>
+          Engineering notes, architectural breakthroughs, and product deep-dives.
+        </p>
+      </div>
+
+      <a
+        href="#blog"
+        style={{
+          color: '#ffffff',
+          fontSize: '14px',
+          fontWeight: 600,
+          textDecoration: 'none',
+          padding: '10px 18px',
+          border: '1px solid #333333',
+          borderRadius: '8px',
+          backgroundColor: '#141414',
+        }}
+      >
+        View All Articles →
+      </a>
+    </div>
+
+    {/* Articles Grid */}
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+        gap: '28px',
+      }}
+    >
+      {/* Blog Card 1 */}
+      <article
+        style={{
+          backgroundColor: '#141414',
+          border: '1px solid #262626',
+          borderRadius: '16px',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <div
+          style={{
+            height: '200px',
+            backgroundColor: '#1c1c1c',
+            borderBottom: '1px solid #262626',
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#525252' }}>
+            System Architecture
+          </span>
+          <span
+            style={{
+              position: 'absolute',
+              top: '16px',
+              left: '16px',
+              backgroundColor: '#000000cc',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              fontSize: '11px',
+              color: '#d4d4d4',
+              fontWeight: 500,
+            }}
+          >
+            Engineering
+          </span>
+        </div>
+        <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <div style={{ fontSize: '13px', color: '#737373', marginBottom: '10px' }}>
+            September 2026 • 6 min read
+          </div>
+          <h3 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '10px', lineHeight: 1.4 }}>
+            Next-Gen Architecture: Designing for Sub-Millisecond Speed
+          </h3>
+          <p style={{ fontSize: '14px', color: '#8e8e8e', lineHeight: 1.7, flex: 1, margin: '0 0 20px 0' }}>
+            An inside look at our migration to asynchronous pipelines, hardware caching layers, and the architectural 
+            patterns that lowered application latency across global nodes.
+          </p>
+          <a
+            href="#read-more"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: '#ffffff',
+              textDecoration: 'none',
+              alignSelf: 'flex-start',
+            }}
+          >
+            Read Article →
+          </a>
+        </div>
+      </article>
+
+      {/* Blog Card 2 */}
+      <article
+        style={{
+          backgroundColor: '#141414',
+          border: '1px solid #262626',
+          borderRadius: '16px',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <div
+          style={{
+            height: '200px',
+            backgroundColor: '#1c1c1c',
+            borderBottom: '1px solid #262626',
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#525252' }}>
+            Material Research
+          </span>
+          <span
+            style={{
+              position: 'absolute',
+              top: '16px',
+              left: '16px',
+              backgroundColor: '#000000cc',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              fontSize: '11px',
+              color: '#d4d4d4',
+              fontWeight: 500,
+            }}
+          >
+            Sustainability
+          </span>
+        </div>
+        <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <div style={{ fontSize: '13px', color: '#737373', marginBottom: '10px' }}>
+            August 2026 • 4 min read
+          </div>
+          <h3 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '10px', lineHeight: 1.4 }}>
+            Circular Supply Chains: Eliminating Waste at the Source
+          </h3>
+          <p style={{ fontSize: '14px', color: '#8e8e8e', lineHeight: 1.7, flex: 1, margin: '0 0 20px 0' }}>
+            How minor changes in our composite sourcing and regional fulfillment logistics enabled a net 34% drop 
+            in lifetime production waste across our entire flagship collection.
+          </p>
+          <a
+            href="#read-more"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: '#ffffff',
+              textDecoration: 'none',
+              alignSelf: 'flex-start',
+            }}
+          >
+            Read Article →
+          </a>
+        </div>
+      </article>
+
+      {/* Blog Card 3 */}
+      <article
+        style={{
+          backgroundColor: '#141414',
+          border: '1px solid #262626',
+          borderRadius: '16px',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <div
+          style={{
+            height: '200px',
+            backgroundColor: '#1c1c1c',
+            borderBottom: '1px solid #262626',
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#525252' }}>
+            Community Showcase
+          </span>
+          <span
+            style={{
+              position: 'absolute',
+              top: '16px',
+              left: '16px',
+              backgroundColor: '#000000cc',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              fontSize: '11px',
+              color: '#d4d4d4',
+              fontWeight: 500,
+            }}
+          >
+            Community
+          </span>
+        </div>
+        <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <div style={{ fontSize: '13px', color: '#737373', marginBottom: '10px' }}>
+            July 2026 • 5 min read
+          </div>
+          <h3 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '10px', lineHeight: 1.4 }}>
+            Field Report: 10 Global Setups Powered by GBG-X
+          </h3>
+          <p style={{ fontSize: '14px', color: '#8e8e8e', lineHeight: 1.7, flex: 1, margin: '0 0 20px 0' }}>
+            We interviewed software engineers, backcountry photographers, and industrial designers to understand 
+            how they adapt our gear to survive demanding real-world setups.
+          </p>
+          <a
+            href="#read-more"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: '#ffffff',
+              textDecoration: 'none',
+              alignSelf: 'flex-start',
+            }}
+          >
+            Read Article →
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+</Reveal>
+
             {/* ================= 15. STAY CONNECTED WITH GBGX ================= */}
             <Reveal direction="scale">
               <section style={{ maxWidth: '1380px', margin: '0 auto', padding: '0 20px 50px 20px' }}>
@@ -2984,10 +4140,12 @@ export default function App() {
             </div>
             <div>
               <h4 style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', marginBottom: '12px' }}>Corporate Headquarters</h4>
-              <div style={{ fontSize: '12px', fontWeight: '900', color: themeStyles.text, marginBottom: '6px' }}><a href="tel:+918800023537" className="!text-gray-300 !no-underline"> +91 88000 23537</a></div>
-              <div style={{ fontSize: '11px', color: themeStyles.subtext, marginBottom: '6px' }}> <a href="mailto:support@gbgx.com" className="!text-gray-300 !no-underline"> support@gbgx.com</a></div>
-              <div style={{ fontSize: '10.5px', color: themeStyles.subtext, lineHeight: 1.5, marginBottom: '8px' }}> Tower - B, The Corenthum, Noida Sector 62, Uttar Pradesh - 201301, India</div>
-              <div style={{ fontSize: '9px', color: themeStyles.subtext }}>Hours: Mon - Sat: 09:00 - 20:00 IST</div>
+              <div style={{ fontSize: '12px', fontWeight: '900', color: themeStyles.text, marginBottom: '6px' }}><a href="tel:+918800023537" style={{ color: '#ffffff', textDecoration: 'none' }}
+  className="hover:text-gray-300">☎ +91 88000 23537</a></div>
+              <div style={{ fontSize: '11px', color: themeStyles.subtext, marginBottom: '6px' }}> <a href="mailto:support@gbgx.com" style={{ color: '#ffffff', textDecoration: 'none' }}
+  className="hover:text-gray-300">✉️ support@gbgx.com</a></div>
+              <div style={{ fontSize: '10.5px', color: themeStyles.subtext, lineHeight: 1.5, marginBottom: '8px' }}> 🏠︎ Tower - B, The Corenthum, Noida Sector 62, Uttar Pradesh - 201301, India</div>
+              <div style={{ fontSize: '9px', color: themeStyles.subtext }}>Hours: Mon - Sat: 10:00 - 07:00 IST</div>
             </div>
           </div>
           <div style={{ paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '9.5px', color: themeStyles.subtext }}>
