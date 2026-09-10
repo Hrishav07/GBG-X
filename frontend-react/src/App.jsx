@@ -3791,6 +3791,7 @@ export default function App() {
       padding: '96px 24px',
       borderTop: '1px solid #262626',
       color: '#ffffff',
+      fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }}
   >
     {/* Section Header */}
@@ -3808,48 +3809,52 @@ export default function App() {
         <span
           style={{
             fontSize: '12px',
-            letterSpacing: '2px',
+            letterSpacing: '3px',
             textTransform: 'uppercase',
-            color: '#888888',
-            fontWeight: 600,
+            color: '#a78bfa',
+            fontWeight: 700,
+            display: 'block',
+            marginBottom: '8px',
           }}
         >
           Insights &amp; Updates
         </span>
         <h2
           style={{
-            fontSize: '40px',
-            fontWeight: 700,
-            marginTop: '10px',
+            fontSize: '38px',
+            fontWeight: 800,
+            marginTop: '0',
             marginBottom: '8px',
             letterSpacing: '-0.5px',
+            textTransform: 'uppercase',
           }}
         >
           From the Journal
         </h2>
-        <p style={{ color: '#8e8e8e', fontSize: '15px', margin: 0 }}>
-          Engineering notes, architectural breakthroughs, and product deep-dives.
+        <p style={{ color: '#9ca3af', fontSize: '15px', margin: 0 }}>
+          Engineering notes, architectural breakthroughs, and electric vehicle trends across India.
         </p>
       </div>
 
       <a
-        href="#blog"
+        href="#all-articles"
         style={{
           color: '#ffffff',
-          fontSize: '14px',
+          fontSize: '13px',
           fontWeight: 600,
           textDecoration: 'none',
-          padding: '10px 18px',
-          border: '1px solid #333333',
+          padding: '10px 20px',
+          border: '1px solid #3f3f46',
           borderRadius: '8px',
-          backgroundColor: '#141414',
+          backgroundColor: '#18181b',
+          transition: 'all 0.2s ease',
         }}
       >
         View All Articles →
       </a>
     </div>
 
-    {/* Articles Grid */}
+    {/* Articles Grid - Structured like the reference layout */}
     <div
       style={{
         display: 'grid',
@@ -3866,60 +3871,60 @@ export default function App() {
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
+          transition: 'border-color 0.2s ease',
         }}
       >
         <div
           style={{
-            height: '200px',
-            backgroundColor: '#1c1c1c',
+            height: '210px',
+            backgroundColor: '#1e1b4b',
+            backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 60%)',
             borderBottom: '1px solid #262626',
             position: 'relative',
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: 'flex-end',
+            padding: '20px',
           }}
         >
-          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#525252' }}>
-            System Architecture
-          </span>
           <span
             style={{
-              position: 'absolute',
-              top: '16px',
-              left: '16px',
-              backgroundColor: '#000000cc',
-              padding: '4px 10px',
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
+              backdropFilter: 'blur(4px)',
+              padding: '6px 12px',
               borderRadius: '6px',
               fontSize: '11px',
-              color: '#d4d4d4',
-              fontWeight: 500,
+              color: '#818cf8',
+              fontWeight: 700,
+              letterSpacing: '1px',
+              textTransform: 'uppercase',
             }}
           >
             Engineering
           </span>
         </div>
         <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <div style={{ fontSize: '13px', color: '#737373', marginBottom: '10px' }}>
-            September 2026 • 6 min read
+          <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '10px', fontWeight: 500 }}>
+            September 10, 2026 • 6 min read
           </div>
-          <h3 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '10px', lineHeight: 1.4 }}>
-            Next-Gen Architecture: Designing for Sub-Millisecond Speed
+          <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '10px', lineHeight: 1.4, color: '#f3f4f6' }}>
+            Next-Gen Battery Architecture: Maximizing Range in Indian Urban Climates
           </h3>
-          <p style={{ fontSize: '14px', color: '#8e8e8e', lineHeight: 1.7, flex: 1, margin: '0 0 20px 0' }}>
-            An inside look at our migration to asynchronous pipelines, hardware caching layers, and the architectural 
-            patterns that lowered application latency across global nodes.
+          <p style={{ fontSize: '14px', color: '#9ca3af', lineHeight: 1.6, flex: 1, margin: '0 0 24px 0' }}>
+            An inside look at our advanced thermal management systems and the engineering decisions improving battery longevity across intense urban conditions.
           </p>
           <a
             href="#read-more"
             style={{
               fontSize: '13px',
-              fontWeight: 600,
-              color: '#ffffff',
+              fontWeight: 700,
+              color: '#a78bfa',
               textDecoration: 'none',
-              alignSelf: 'flex-start',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
             }}
           >
-            Read Article →
+            Read Article <span>→</span>
           </a>
         </div>
       </article>
@@ -3933,60 +3938,60 @@ export default function App() {
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
+          transition: 'border-color 0.2s ease',
         }}
       >
         <div
           style={{
-            height: '200px',
-            backgroundColor: '#1c1c1c',
+            height: '210px',
+            backgroundColor: '#312e81',
+            backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.25) 0%, transparent 60%)',
             borderBottom: '1px solid #262626',
             position: 'relative',
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: 'flex-end',
+            padding: '20px',
           }}
         >
-          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#525252' }}>
-            Material Research
-          </span>
           <span
             style={{
-              position: 'absolute',
-              top: '16px',
-              left: '16px',
-              backgroundColor: '#000000cc',
-              padding: '4px 10px',
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
+              backdropFilter: 'blur(4px)',
+              padding: '6px 12px',
               borderRadius: '6px',
               fontSize: '11px',
-              color: '#d4d4d4',
-              fontWeight: 500,
+              color: '#c084fc',
+              fontWeight: 700,
+              letterSpacing: '1px',
+              textTransform: 'uppercase',
             }}
           >
             Sustainability
           </span>
         </div>
         <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <div style={{ fontSize: '13px', color: '#737373', marginBottom: '10px' }}>
-            August 2026 • 4 min read
+          <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '10px', fontWeight: 500 }}>
+            August 24, 2026 • 4 min read
           </div>
-          <h3 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '10px', lineHeight: 1.4 }}>
-            Circular Supply Chains: Eliminating Waste at the Source
+          <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '10px', lineHeight: 1.4, color: '#f3f4f6' }}>
+            Circular EV Ecosystems: Zero Waste Supply Chains at GBG X
           </h3>
-          <p style={{ fontSize: '14px', color: '#8e8e8e', lineHeight: 1.7, flex: 1, margin: '0 0 20px 0' }}>
-            How minor changes in our composite sourcing and regional fulfillment logistics enabled a net 34% drop 
-            in lifetime production waste across our entire flagship collection.
+          <p style={{ fontSize: '14px', color: '#9ca3af', lineHeight: 1.6, flex: 1, margin: '0 0 24px 0' }}>
+            Exploring how closed-loop battery recycling programs and eco-friendly packaging components are shaping a genuinely green automotive retail marketplace.
           </p>
           <a
             href="#read-more"
             style={{
               fontSize: '13px',
-              fontWeight: 600,
-              color: '#ffffff',
+              fontWeight: 700,
+              color: '#a78bfa',
               textDecoration: 'none',
-              alignSelf: 'flex-start',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
             }}
           >
-            Read Article →
+            Read Article <span>→</span>
           </a>
         </div>
       </article>
@@ -4000,60 +4005,60 @@ export default function App() {
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
+          transition: 'border-color 0.2s ease',
         }}
       >
         <div
           style={{
-            height: '200px',
-            backgroundColor: '#1c1c1c',
+            height: '210px',
+            backgroundColor: '#1e1b4b',
+            backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.25) 0%, transparent 70%)',
             borderBottom: '1px solid #262626',
             position: 'relative',
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: 'flex-end',
+            padding: '20px',
           }}
         >
-          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1.5px', color: '#525252' }}>
-            Community Showcase
-          </span>
           <span
             style={{
-              position: 'absolute',
-              top: '16px',
-              left: '16px',
-              backgroundColor: '#000000cc',
-              padding: '4px 10px',
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
+              backdropFilter: 'blur(4px)',
+              padding: '6px 12px',
               borderRadius: '6px',
               fontSize: '11px',
-              color: '#d4d4d4',
-              fontWeight: 500,
+              color: '#60a5fa',
+              fontWeight: 700,
+              letterSpacing: '1px',
+              textTransform: 'uppercase',
             }}
           >
             Community
           </span>
         </div>
         <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <div style={{ fontSize: '13px', color: '#737373', marginBottom: '10px' }}>
-            July 2026 • 5 min read
+          <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '10px', fontWeight: 500 }}>
+            July 18, 2026 • 5 min read
           </div>
-          <h3 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '10px', lineHeight: 1.4 }}>
-            Field Report: 10 Global Setups Powered by GBG-X
+          <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '10px', lineHeight: 1.4, color: '#f3f4f6' }}>
+            The Rise of Multi-Brand EV Adoption: What Indian Riders Want
           </h3>
-          <p style={{ fontSize: '14px', color: '#8e8e8e', lineHeight: 1.7, flex: 1, margin: '0 0 20px 0' }}>
-            We interviewed software engineers, backcountry photographers, and industrial designers to understand 
-            how they adapt our gear to survive demanding real-world setups.
+          <p style={{ fontSize: '14px', color: '#9ca3af', lineHeight: 1.6, flex: 1, margin: '0 0 24px 0' }}>
+            Insights gathered from over 45,000 active GBG X members regarding feature preferences, charging accessibility, and multi-brand comparison habits.
           </p>
           <a
             href="#read-more"
             style={{
               fontSize: '13px',
-              fontWeight: 600,
-              color: '#ffffff',
+              fontWeight: 700,
+              color: '#a78bfa',
               textDecoration: 'none',
-              alignSelf: 'flex-start',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
             }}
           >
-            Read Article →
+            Read Article <span>→</span>
           </a>
         </div>
       </article>
